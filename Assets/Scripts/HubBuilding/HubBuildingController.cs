@@ -13,6 +13,7 @@ namespace HubBuilding
         private GameObject normalPrefab;
         private bool isJustActivated;
         private Camera camera;
+        private GameObject translucentPrefabAsset;
 
         private HubBuildingMaterial translucentMaterial; 
 
@@ -26,12 +27,10 @@ namespace HubBuilding
         {
             isActive = true;
             isJustActivated = true;
-            
+
             tileSize = currentItem.TileSize;
             normalPrefab = currentItem.NormalPrefab;
-            
-            translucentPrefab = UnityEngine.Object.Instantiate(currentItem.TranslucentPrefab);
-            translucentMaterial = new HubBuildingMaterial(translucentPrefab);
+            translucentPrefabAsset = currentItem.TranslucentPrefab;
         }
         
         public void Tick()
@@ -69,8 +68,16 @@ namespace HubBuilding
 
             if (!Physics.Raycast(ray, out RaycastHit hitInfo, config.MaxDistanceRaycast, config.GroundLayerMask)) return;
             var location = HubGridLocation.FromWorldCoords(hitInfo.point);
-            
-            Vector3 footprintCenter = EnsurePivotPoint(location.FootprintCenter(tileSize.x, tileSize.y), hitInfo);
+            Vector3 footprintCenter = location.FootprintCenter(tileSize.x, tileSize.y);
+
+            if (!translucentPrefab)
+            {
+                translucentPrefab = UnityEngine.Object.Instantiate(
+                    translucentPrefabAsset, footprintCenter, Quaternion.identity);
+                translucentMaterial = new HubBuildingMaterial(translucentPrefab);
+            }
+
+            footprintCenter = EnsurePivotPoint(footprintCenter, hitInfo);
             translucentPrefab.transform.position = footprintCenter;
 
             bool canPlace = HubBuildingManager.Instance.Grid.CanPlace(location.x, location.y, tileSize.x, tileSize.y);
@@ -80,9 +87,7 @@ namespace HubBuilding
             if (InputUtils.WasPressedThisFrame() && canPlace)
             {
                 HubBuildingManager.Instance.Grid.SetOccupied(location.x, location.y, tileSize.x, tileSize.y);
-                var placed = UnityEngine.Object.Instantiate(normalPrefab, footprintCenter, Quaternion.identity);
-                
-                ApplyFootprintScale(placed);
+                UnityEngine.Object.Instantiate(normalPrefab, footprintCenter, Quaternion.identity);
                 
                 UnityEngine.Object.Destroy(translucentPrefab);
                 translucentPrefab = null;
@@ -90,14 +95,6 @@ namespace HubBuilding
                 normalPrefab = null;
                 isActive = false; 
             }
-        }
-        
-        private void ApplyFootprintScale(GameObject item)
-        {
-            float height = item.transform.localScale.y;
-            item.transform.localScale = HubGridLocation.FootprintWorldScale(
-                tileSize.x, tileSize.y, height
-            ); 
         }
         
         private Vector3 EnsurePivotPoint(Vector3 footprintCenter, RaycastHit hitInfo)

@@ -11,7 +11,7 @@ public static class InputUtils
             return true;
         }
 
-        if (Mouse.current?.leftButton.isPressed == true)
+        if (Mouse.current != null)
         {
             position = Mouse.current.position.ReadValue();
             return true;

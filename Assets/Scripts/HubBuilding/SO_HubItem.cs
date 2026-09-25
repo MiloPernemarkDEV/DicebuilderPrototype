@@ -12,7 +12,7 @@ namespace HubBuilding
         [SerializeField] private Vector2Int tileSize; 
         [SerializeField] private bool hasSlot; 
         [SerializeField] private List<Transform> slotTransforms;
-    
+        
         public string ID => hubItemId;
         public GameObject NormalPrefab => normalPrefab;
         public GameObject TranslucentPrefab => translucentPrefab;

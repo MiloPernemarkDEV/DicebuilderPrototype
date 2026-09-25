@@ -11,6 +11,17 @@ namespace HubBuilding
     
         public HubBuildingGrid Grid { get; private set; }
         private HubBuildingController controller;
+        
+        // For testing!
+        [SerializeField] private SO_HubItem debugItem;
+        private void OnGUI()
+        {
+            if (GUI.Button(new Rect(10, 10, 200, 40), "Start Placement"))
+            {
+                OnStartPlacement(debugItem);
+            }
+        }
+        //
     
         protected virtual void Awake()
         {

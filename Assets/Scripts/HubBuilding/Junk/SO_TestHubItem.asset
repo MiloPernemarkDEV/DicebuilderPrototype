@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cef94a55884b4204ea1c313b1aa288d5, type: 3}
+  m_Name: SO_TestHubItem
+  m_EditorClassIdentifier: Assembly-CSharp::HubBuilding.SO_HubItem
+  hubItemId: IDONTNEEDTHISPROBABLY
+  normalPrefab: {fileID: 7825086715680537671, guid: 78f1dcd48fcfb3e47898a89cc32d0c24, type: 3}
+  translucentPrefab: {fileID: 2684452591446738811, guid: 198768f900b580847bbb93b9f9a2d674, type: 3}
+  tileSize: {x: 2, y: 1}
+  hasSlot: 0
+  slotTransforms: []

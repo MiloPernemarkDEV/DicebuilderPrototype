@@ -6,6 +6,9 @@ namespace HubBuilding
     {
         private const float TileWidth = 1.0f;
         private const float TileHeight = 0.5f; 
+        private const int OriginX = 150;
+        private const int OriginY = 150;
+        
         
         public int x; 
         public int y;
@@ -37,21 +40,20 @@ namespace HubBuilding
 
         private static Vector3 ToWorldCoords(float gridX, float gridY)
         {
-            float worldX = (gridX - gridY) * (TileWidth * 0.5f);
-            float worldZ = (gridX + gridY) * (TileHeight * 0.5f);
+            float shiftedX = gridX - OriginX;
+            float shiftedY = gridY - OriginY;
+            float worldX = (shiftedX - shiftedY) * (TileWidth * 0.5f);
+            float worldZ = (shiftedX + shiftedY) * (TileHeight * 0.5f);
             return new Vector3(worldX, 0f, worldZ);
         }
 
         public static HubGridLocation FromWorldCoords(Vector3 worldPos)
         {
-            float halfWidth = TileWidth * 0.5f;
-            float halfHeight = TileHeight * 0.5f;
-
             float cartX = worldPos.x / TileWidth;
             float cartZ = worldPos.z / TileHeight;
 
-            int gridX = Mathf.FloorToInt(cartZ + cartX);
-            int gridY = Mathf.FloorToInt(cartZ - cartX);
+            int gridX = Mathf.FloorToInt(cartZ + cartX) + OriginX;
+            int gridY = Mathf.FloorToInt(cartZ - cartX) + OriginY;
 
             return new HubGridLocation(gridX, gridY);
         }
