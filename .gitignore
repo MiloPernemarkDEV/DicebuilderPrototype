@@ -16,7 +16,6 @@
 *.sln.iml
 idea/
 
-
 # AWS User-specific
 .idea/**/aws.xml
 
