@@ -11,6 +11,11 @@
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
 .idea/**/shelf
+# JetBrains Rider / IntelliJ
+.idea/
+*.sln.iml
+idea/
+
 
 # AWS User-specific
 .idea/**/aws.xml
