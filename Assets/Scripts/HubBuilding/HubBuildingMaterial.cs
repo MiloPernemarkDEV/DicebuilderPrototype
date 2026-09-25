@@ -1,36 +1,47 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace HubBuilding
 {
-    public class HubBuildingMaterial
+    public sealed class HubBuildingMaterial
     {
-        public static Material GetURPTranslucentMaterial(Color color)
+        private static readonly int Surface = Shader.PropertyToID("_Surface");
+        private static readonly int Blend = Shader.PropertyToID("_Blend");
+        private static readonly int SrcBlend = Shader.PropertyToID("_SrcBlend");
+        private static readonly int DstBlend = Shader.PropertyToID("_DstBlend");
+        private static readonly int ZWrite = Shader.PropertyToID("_ZWrite");
+        private static readonly int BaseColor = Shader.PropertyToID("_BaseColor");
+
+        private readonly Renderer[] renderers;
+        private readonly MaterialPropertyBlock propertyBlock;
+
+        public HubBuildingMaterial(GameObject preview)
         {
-            Shader urpLitShader = Shader.Find("Universal Render Pipeline/Lit");
+            renderers = preview.GetComponentsInChildren<Renderer>();
+            propertyBlock = new MaterialPropertyBlock();
 
-            Material mat = new Material(urpLitShader);
-        
-            mat.SetFloat("_Surface", 1); // Transparent
-            mat.SetFloat("_Blend", 0);   // Alpha blend
-        
-            mat.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
-            mat.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
-            mat.SetInt("_ZWrite", 0);
-        
-            mat.SetColor("_BaseColor", color);
-            mat.EnableKeyword("_SURFACE_TYPE_TRANSPARENT");
-            mat.renderQueue = (int)UnityEngine.Rendering.RenderQueue.Transparent;
-
-            return mat;
-        }
-        
-        public static void SetTranslucentMaterial(GameObject gameObject, Color color)
-        {
-            if (gameObject == null) return;
-
-            foreach (var renderer in gameObject.GetComponentsInChildren<Renderer>())
+            foreach (var renderer in renderers)
             {
-                renderer.material = GetURPTranslucentMaterial(color);
+                Material material = renderer.material;
+
+                material.SetFloat(Surface, 1);
+                material.SetFloat(Blend, 0);
+                material.SetInt(SrcBlend, (int)BlendMode.SrcAlpha);
+                material.SetInt(DstBlend, (int)BlendMode.OneMinusSrcAlpha);
+                material.SetInt(ZWrite, 0);
+
+                material.EnableKeyword("_SURFACE_TYPE_TRANSPARENT");
+                material.renderQueue = (int)RenderQueue.Transparent;
+            }
+        }
+
+        public void SetColor(Color color)
+        {
+            propertyBlock.SetColor(BaseColor, color);
+
+            foreach (var renderer in renderers)
+            {
+                renderer.SetPropertyBlock(propertyBlock);
             }
         }
     }
