@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace SimpleStateMachine
 {
-    public class RuntimeSimpleState
+    public sealed class RuntimeSimpleState
     {
         private string _stateName;
         private List<string> _toStates;

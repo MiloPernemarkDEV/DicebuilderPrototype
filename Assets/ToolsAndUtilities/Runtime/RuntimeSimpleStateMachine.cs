@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace SimpleStateMachine
 {
-    public class RuntimeSimpleStateMachine
+    public sealed class RuntimeSimpleStateMachine
     {
         private string _stateMachineName;
         private List<RuntimeSimpleState> _states;
