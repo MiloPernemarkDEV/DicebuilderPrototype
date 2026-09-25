@@ -5,7 +5,7 @@ namespace DiceTools
     public sealed class Spinner
     {
 
-        private bool _isSpinning;
+        private bool _isSpinning = false;
         public event System.Action SpinningStarted;
         public event System.Action SpinningFinished;
         public event System.Action SpinnerUpdated;

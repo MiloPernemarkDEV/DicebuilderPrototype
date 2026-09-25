@@ -7,8 +7,9 @@ namespace Encounter
     {
         public void SetRuntimeDie(RuntimeDie runtimeDie);
         public void Roll();
-
         public bool GetIsRolling();
+
+        public event System.Action RollingFinished;
     }
 
 }

@@ -47,10 +47,13 @@ namespace Encounter
         private void HandleSpinnerFinished()
         {
             if (_runtimeDie == null) return;
+            RollingFinished?.Invoke();
         }
         private void HandleSpinnerUpdated()
         {
             if (_runtimeDie == null) return;
+            _runtimeDie.SetNewCurrentFace();
+            SetDieSprite();
         }
 
         private void SetDieSprite()
@@ -63,6 +66,8 @@ namespace Encounter
         //=======================
         // IDie2D Implementation
         //=======================
+        public event System.Action RollingFinished;
+
         public void SetRuntimeDie(RuntimeDie runtimeDie)
         {
             _runtimeDie = runtimeDie;
@@ -72,6 +77,8 @@ namespace Encounter
         {
             if ( _runtimeDie == null) return;
             if (_isRolling) return;
+
+            _spinner.Spin(gameObject, 4f, 50);
 
 
 
