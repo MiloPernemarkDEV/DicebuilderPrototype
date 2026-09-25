@@ -8,11 +8,12 @@ namespace HubBuilding
     public class HubBuildingController
     {
         private bool isActive;
-        private SO_HubBuildingConfig config; 
+        private readonly SO_HubBuildingConfig config; 
 
         private Vector2Int tileSize;
         private GameObject translucentPrefab;
         private GameObject normalPrefab;
+        private bool isJustActivated;
 
         public HubBuildingController(SO_HubBuildingConfig config)
         {
@@ -22,6 +23,8 @@ namespace HubBuilding
         public void Activate(SO_HubItem currentItem)
         {
             isActive = true;
+            isJustActivated = true;
+            
             tileSize = currentItem.TileSize;
             normalPrefab = currentItem.NormalPrefab;
             translucentPrefab = currentItem.TranslucentPrefab;
@@ -44,8 +47,15 @@ namespace HubBuilding
             HandlePlacement();
         }
 
+        private bool waitNextFrameOnActivation()
+        {
+            return isJustActivated;
+        }
+
         private void HandlePlacement()
         {
+            if (waitNextFrameOnActivation()) return;
+            
             if (!InputUtils.TryGetPointerPosition(out var screenPos)) return;
             if (Camera.main == null) return;
             
@@ -73,6 +83,7 @@ namespace HubBuilding
                 Object.Destroy(translucentPrefab);
                 translucentPrefab = null;
                 normalPrefab = null;
+                isActive = false; 
             }
         }
 
