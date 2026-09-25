@@ -43,7 +43,6 @@ public class StateMachineTester : MonoBehaviour
                 return;
 
             default:
-                Debug.Log("FOO");
                 return;
         }
     }
