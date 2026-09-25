@@ -7,17 +7,17 @@ namespace HubBuilding
 {
     public class HubBuildingController
     {
-        public bool IsActive => isActive;
-
-        [SerializeField] private bool isActive;
-        [SerializeField] private float maxDistanceRaycast;
-        [SerializeField] private LayerMask groundLayerMask;
-        [SerializeField] private Color validPlacementColor; 
-        [SerializeField] private Color invalidPlacementColor;
+        private bool isActive;
+        private SO_HubBuildingConfig config; 
 
         private Vector2Int tileSize;
         private GameObject translucentPrefab;
         private GameObject normalPrefab;
+
+        public HubBuildingController(SO_HubBuildingConfig config)
+        {
+            this.config = config;
+        }
 
         public void Activate(SO_HubItem currentItem)
         {
@@ -51,17 +51,16 @@ namespace HubBuilding
             
             var ray = Camera.main.ScreenPointToRay(screenPos);
 
-            if (!Physics.Raycast(ray, out RaycastHit hitInfo, maxDistanceRaycast, groundLayerMask)) return;
+            if (!Physics.Raycast(ray, out RaycastHit hitInfo, config.MaxDistanceRaycast, config.GroundLayerMask)) return;
             var location = HubGridLocation.FromWorldCoords(hitInfo.point);
             
-            Vector3 footprintCenter = location.FootprintCenter(tileSize.x, tileSize.y);
-            footprintCenter.y = translucentPrefab.transform.localScale.y * 0.5f;
+            Vector3 footprintCenter = EnsurePivotPoint(location.FootprintCenter(tileSize.x, tileSize.y), hitInfo);
             translucentPrefab.transform.position = footprintCenter;
 
             bool canPlace = HubGridManager.Instance.Grid.CanPlace(location.x, location.y, tileSize.x, tileSize.y);
             
             HubBuildingMaterial.SetTranslucentMaterial(translucentPrefab, 
-                canPlace ? validPlacementColor : invalidPlacementColor
+                canPlace ? config.ValidPlacementColor : config.InvalidPlacementColor
             );
 
             if (InputUtils.WasPressedThisFrame() && canPlace)
@@ -83,6 +82,21 @@ namespace HubBuilding
             item.transform.localScale = HubGridLocation.FootprintWorldScale(
                 tileSize.x, tileSize.y, height
             ); 
+        }
+
+        private Vector3 EnsurePivotPoint(Vector3 footprintCenter, RaycastHit hitInfo)
+        {
+            if (translucentPrefab.TryGetComponent<Renderer>(out var renderer))
+            {
+                float pivotToBottomOffset = renderer.localBounds.center.y - renderer.localBounds.extents.y;
+                footprintCenter.y = hitInfo.point.y - pivotToBottomOffset;
+            }
+            else
+            {
+                footprintCenter.y = hitInfo.point.y + (translucentPrefab.transform.localScale.y * 0.5f);
+            }
+
+            return footprintCenter; 
         }
     }
 }
