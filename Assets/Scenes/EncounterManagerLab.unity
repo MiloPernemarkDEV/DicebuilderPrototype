@@ -418,10 +418,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1599285192}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62a1c5bfc4e310542a9818f851404788, type: 3}
+  m_Script: {fileID: 11500000, guid: 73289733689142c488ffd0bc00f696f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EncounterManager
-  _stateMachineSO: {fileID: 11400000, guid: 8c718280325e1254a9a682c95f3b36b8, type: 2}
+  _stateMachineSO: {fileID: 11400000, guid: 53e4272ebcc757b48a5237bbd7fe861b, type: 2}
 --- !u!4 &1599285194
 Transform:
   m_ObjectHideFlags: 0
