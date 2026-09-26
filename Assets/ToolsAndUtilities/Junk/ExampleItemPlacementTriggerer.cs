@@ -13,6 +13,7 @@ public class ExampleItemPlacementTriggerer : MonoBehaviour
     {
         _itemPlacementButton.onClick.AddListener(HandleButtonPressed);
     }
+
     private void OnDisable()
     {
         _itemPlacementButton.onClick.RemoveAllListeners();
@@ -23,5 +24,4 @@ public class ExampleItemPlacementTriggerer : MonoBehaviour
         _itemPlacementButton.interactable = false;
         _itemPlacementEvent.TriggerEvent(_itemSO);
     }
-
 }
