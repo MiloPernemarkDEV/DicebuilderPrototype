@@ -9,21 +9,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 363b66144e61248468534ef890c6f453, type: 3}
+  m_Script: {fileID: 11500000, guid: a8e0d8ba2ff41a4499d017db18a0cbd7, type: 3}
   m_Name: BasicPlayerDrawBag
   m_EditorClassIdentifier: Assembly-CSharp::DiceTools.SO_DieBag
-  _displayName: Basic Player Draw Bag
+  _displayName: 
   _collectionType: 0
   _dice:
-  - {fileID: 11400000, guid: 376af10d28ee9de428ef6f181a3e56cd, type: 2}
-  - {fileID: 11400000, guid: 376af10d28ee9de428ef6f181a3e56cd, type: 2}
-  - {fileID: 11400000, guid: 376af10d28ee9de428ef6f181a3e56cd, type: 2}
-  - {fileID: 11400000, guid: 376af10d28ee9de428ef6f181a3e56cd, type: 2}
-  - {fileID: 11400000, guid: 376af10d28ee9de428ef6f181a3e56cd, type: 2}
-  - {fileID: 11400000, guid: 376af10d28ee9de428ef6f181a3e56cd, type: 2}
-  - {fileID: 11400000, guid: 376af10d28ee9de428ef6f181a3e56cd, type: 2}
-  - {fileID: 11400000, guid: 376af10d28ee9de428ef6f181a3e56cd, type: 2}
-  - {fileID: 11400000, guid: 376af10d28ee9de428ef6f181a3e56cd, type: 2}
-  - {fileID: 11400000, guid: 376af10d28ee9de428ef6f181a3e56cd, type: 2}
-  - {fileID: 11400000, guid: 376af10d28ee9de428ef6f181a3e56cd, type: 2}
-  - {fileID: 11400000, guid: 376af10d28ee9de428ef6f181a3e56cd, type: 2}
+  - {fileID: 11400000, guid: ebec5d1448cfbe645ac2441a51e34193, type: 2}
+  - {fileID: 11400000, guid: ebec5d1448cfbe645ac2441a51e34193, type: 2}
+  - {fileID: 11400000, guid: ebec5d1448cfbe645ac2441a51e34193, type: 2}
+  - {fileID: 11400000, guid: ebec5d1448cfbe645ac2441a51e34193, type: 2}
+  - {fileID: 11400000, guid: ebec5d1448cfbe645ac2441a51e34193, type: 2}
+  - {fileID: 11400000, guid: ebec5d1448cfbe645ac2441a51e34193, type: 2}
+  - {fileID: 11400000, guid: ebec5d1448cfbe645ac2441a51e34193, type: 2}
+  - {fileID: 11400000, guid: ebec5d1448cfbe645ac2441a51e34193, type: 2}
+  - {fileID: 11400000, guid: ebec5d1448cfbe645ac2441a51e34193, type: 2}
+  - {fileID: 11400000, guid: ebec5d1448cfbe645ac2441a51e34193, type: 2}
+  - {fileID: 11400000, guid: ebec5d1448cfbe645ac2441a51e34193, type: 2}
+  - {fileID: 11400000, guid: ebec5d1448cfbe645ac2441a51e34193, type: 2}
