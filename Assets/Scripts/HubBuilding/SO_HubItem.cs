@@ -10,14 +10,12 @@ namespace HubBuilding
         [SerializeField] private GameObject normalPrefab;
         [SerializeField] private GameObject translucentPrefab; 
         [SerializeField] private Vector2Int tileSize; 
-        [SerializeField] private bool hasSlot; 
-        [SerializeField] private List<Transform> slotTransforms;
+        [SerializeField] private bool hasSlots; 
         
         public string ID => hubItemId;
         public GameObject NormalPrefab => normalPrefab;
         public GameObject TranslucentPrefab => translucentPrefab;
         public Vector2Int TileSize => tileSize;
-        public bool HasSlot => hasSlot;
-        public List<Transform> SlotTransforms => slotTransforms;
+        public bool HasSlots => hasSlots;
     } 
 }

@@ -1,10 +1,14 @@
 namespace HubBuilding
 {
+    // This class answers two questions:
+    // "Is this rectangle of tiles free?" 
+    // and "Mark this rectangle of tiles as taken" 
     public class HubBuildingGrid
     {
         private readonly int width;
         private readonly int height;
 
+        // Sets every tile to false 
         private readonly bool[,] occupied;
 
         public HubBuildingGrid(int width, int height)
@@ -19,28 +23,27 @@ namespace HubBuilding
             return x >= 0 && x < width && y >= 0 && y < height;
         }
 
-        public bool CanPlace(int x, int y, int sizeX, int sizeY)
+        public bool CanPlace(int startX, int startZ, int tileCountX, int tileCountZ)
         {
-            for (int ix = 0; ix < sizeX; ix++)
+            for (int offsetX = 0; offsetX < tileCountX; offsetX++)
             {
-                for (int iy = 0; iy < sizeY; iy++)
+                for (int offsetZ = 0; offsetZ < tileCountZ; offsetZ++)
                 {
-                    int gx = x + ix;
-                    int gy = y + iy;
-                    if (!IsValidGridPosition(gx, gy) || occupied[gx, gy])
+                    int tileX = startX + offsetX;
+                    int tileZ = startZ + offsetZ;
+                    if (!IsValidGridPosition(tileX, tileZ) || occupied[tileX, tileZ])
                         return false;
                 }
             }
-
             return true;
         }
 
-        public void SetOccupied(int x, int y, int sizeX, int sizeY)
+        public void SetOccupied(int startX, int startZ, int tileCountX, int tileCountZ)
         {
-            for (int ix = 0; ix < sizeX; ix++)
+            for (int offsetX = 0; offsetX < tileCountX; offsetX++)
             {
-                for (int iy = 0; iy < sizeY; iy++)
-                    occupied[x + ix, y + iy] = true;
+                for (int offsetZ = 0; offsetZ < tileCountZ; offsetZ++)
+                    occupied[startX + offsetX, startZ + offsetZ] = true;
             }
         }
     }

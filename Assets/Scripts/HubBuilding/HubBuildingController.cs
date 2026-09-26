@@ -72,8 +72,7 @@ namespace HubBuilding
 
             if (!translucentPrefab)
             {
-                translucentPrefab = UnityEngine.Object.Instantiate(
-                    translucentPrefabAsset, footprintCenter, Quaternion.identity);
+                translucentPrefab = UnityEngine.Object.Instantiate(translucentPrefabAsset, footprintCenter, Quaternion.identity);
                 translucentMaterial = new HubBuildingMaterial(translucentPrefab);
             }
 
