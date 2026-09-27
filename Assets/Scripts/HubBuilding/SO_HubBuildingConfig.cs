@@ -11,6 +11,7 @@ namespace HubBuilding
         [SerializeField] private Color invalidPlacementColor;
         [SerializeField] private int gridWidth; 
         [SerializeField] private int gridHeight;
+        [SerializeField] private Material gridMaterial;
         
         public float MaxDistanceRaycast => maxDistanceRaycast;
         public LayerMask GroundLayerMask => groundLayerMask;
@@ -18,5 +19,6 @@ namespace HubBuilding
         public Color InvalidPlacementColor => invalidPlacementColor;
         public int GridWidth => gridWidth;
         public int GridHeight => gridHeight;
+        public Material  GridMaterial => gridMaterial;
     }
 }

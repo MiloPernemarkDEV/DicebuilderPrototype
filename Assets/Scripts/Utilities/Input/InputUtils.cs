@@ -26,4 +26,10 @@ public static class InputUtils
         return Mouse.current?.leftButton.wasPressedThisFrame == true ||
                Touchscreen.current?.primaryTouch.press.wasPressedThisFrame == true;
     }
+
+    public static bool HasBeenHeldFor(float holdTime)
+    {
+
+        return true; 
+    }
 }

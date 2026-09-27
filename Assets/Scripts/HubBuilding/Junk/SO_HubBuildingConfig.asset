@@ -16,7 +16,8 @@ MonoBehaviour:
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  validPlacementColor: {r: 0.16661179, g: 1, b: 0, a: 0.11764706}
-  invalidPlacementColor: {r: 1, g: 0, b: 0, a: 0.11764706}
+  validPlacementColor: {r: 0.3278147, g: 1, b: 0, a: 0.23529412}
+  invalidPlacementColor: {r: 1, g: 0, b: 0, a: 0.23529412}
   gridWidth: 300
   gridHeight: 300
+  gridMaterial: {fileID: 2100000, guid: 9cee8783305c1764a94b144bc4cd83a5, type: 2}

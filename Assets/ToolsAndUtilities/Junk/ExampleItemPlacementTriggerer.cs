@@ -21,7 +21,7 @@ public class ExampleItemPlacementTriggerer : MonoBehaviour
 
     private void HandleButtonPressed()
     {
-        _itemPlacementButton.interactable = false;
+        // _itemPlacementButton.interactable = false;
         _itemPlacementEvent.TriggerEvent(_itemSO);
     }
 }

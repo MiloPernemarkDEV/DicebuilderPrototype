@@ -3,7 +3,7 @@ using UnityEngine.Rendering;
 
 namespace HubBuilding
 {
-    public sealed class HubBuildingMaterial
+    public sealed class PreviewMaterial
     {
         private static readonly int Surface = Shader.PropertyToID("_Surface");
         private static readonly int Blend = Shader.PropertyToID("_Blend");
@@ -15,7 +15,7 @@ namespace HubBuilding
         private readonly Renderer[] renderers;
         private readonly MaterialPropertyBlock propertyBlock;
 
-        public HubBuildingMaterial(GameObject preview)
+        public PreviewMaterial(GameObject preview)
         {
             renderers = preview.GetComponentsInChildren<Renderer>();
             propertyBlock = new MaterialPropertyBlock();

@@ -1,11 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace HubBuilding
 {
-    public class HubItemDatabase : MonoBehaviour
+    public class ItemLookupTable : MonoBehaviour
     {
-        public static HubItemDatabase Instance {get; private set; }
+        public static ItemLookupTable Instance {get; private set; }
+        [SerializeField] private List<SO_HubItem> hubItems = new List<SO_HubItem>();
     
         protected virtual void Awake()
         {
@@ -17,15 +19,14 @@ namespace HubBuilding
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
-    
-        [SerializeField] private List<SO_HubItem> HubItems = new List<SO_HubItem>();
-
+        
         public SO_HubItem GetHubItem(string id)
         {
-            foreach (var item in HubItems)
+            foreach (var item in hubItems)
             {
                 return item.ID == id ? item : null;
             }
+            Debug.Log("Can't find item " + id);
             return null; 
         }
     }
