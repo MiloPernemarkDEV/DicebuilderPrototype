@@ -11,8 +11,8 @@ namespace HubBuilding
         [SerializeField] private GameObject translucentPrefab; 
         [SerializeField] private Vector2Int tileCount; 
         [SerializeField] private bool hasSlots;
-        
-        public int ID => Animator.StringToHash(hubItemId);
+
+        public string ID => hubItemId;
         public GameObject NormalPrefab => normalPrefab;
         public GameObject TranslucentPrefab => translucentPrefab;
         public Vector2Int TileCount => tileCount;
