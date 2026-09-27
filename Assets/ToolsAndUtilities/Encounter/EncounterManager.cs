@@ -1,5 +1,6 @@
 using UnityEngine;
 using SimpleStateMachine;
+using System.Collections.Generic;
 
 namespace Encounter
 {
@@ -29,8 +30,13 @@ namespace Encounter
         private IStateBehaviors _aftermathBehaviors;
         private IStateBehaviors _playerDeadBehaviors;
         private IStateBehaviors _playerWinBehaviors;
-
         private EncounterTestRig _testRig;
+        private RuntimeEncounterSetup _encounterSetup;
+        private RuntimeCombatant _playerCombatant = null;
+        private List<RuntimeCombatant> _enemyCombatants = new List<RuntimeCombatant>();
+
+        private Dictionary<string, ICombatantGameObject> _combatantObjects = new Dictionary<string, ICombatantGameObject>();
+
 
 
         private void Awake()
@@ -144,7 +150,18 @@ namespace Encounter
         public EncounterTestRig TestRig => _testRig;
         public RuntimeSimpleStateMachine StateMachine => _stateMachine;
 
+        public RuntimeEncounterSetup EncounterSetup { get {  return _encounterSetup; } set { _encounterSetup = value; }  }
 
+        public RuntimeCombatant PlayerCombatant { get { return _playerCombatant; } set { _playerCombatant = value; } }
+        public List<RuntimeCombatant> EnemyCombatants {  get { return _enemyCombatants; } }
+        public Dictionary<string, ICombatantGameObject> CombatantObjects => _combatantObjects;
+        public void InstantiateCombatantObject(string id, GameObject prefab)
+        {
+            GameObject go = Instantiate(prefab);
+            go.name = $"COMBATANT_{id}";
+            ICombatantGameObject cgo = go.GetComponent<ICombatantGameObject>();
+            _combatantObjects[id] = cgo;
+        }
     }
 }
 
