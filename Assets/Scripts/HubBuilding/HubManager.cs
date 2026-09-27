@@ -12,7 +12,7 @@ namespace HubBuilding
     
         public HubGrid Grid { get; private set; }
         private PlacementController controller;
-
+        
         public void OnEnable()
         {
             itemPlacementEvent.OnEventTriggered +=  controller.Activate;
