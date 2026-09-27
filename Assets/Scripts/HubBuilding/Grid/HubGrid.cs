@@ -19,8 +19,8 @@ namespace HubBuilding
             {
                 for (int offsetZ = 0; offsetZ < itemTileCount.y; offsetZ++)
                 {
-                    int finalTileX = loc.x + offsetX;
-                    int finalTileY = loc.y + offsetZ;
+                    int finalTileX = loc.X + offsetX;
+                    int finalTileY = loc.Y + offsetZ;
                     if (!IsValidGridPosition(finalTileX, finalTileY) || grid[finalTileX, finalTileY].isActivated)
                         return false;
                 }
@@ -41,7 +41,7 @@ namespace HubBuilding
             for (int offsetX = 0; offsetX < itemTileSize.x; offsetX++)
             {
                 for (int offsetY = 0; offsetY < itemTileSize.y; offsetY++)
-                    grid[loc.x + offsetX, loc.y + offsetY].isActivated = true;
+                    grid[loc.X + offsetX, loc.Y + offsetY].isActivated = true;
             }
         }
         

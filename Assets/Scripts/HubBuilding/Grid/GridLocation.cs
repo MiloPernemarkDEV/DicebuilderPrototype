@@ -9,24 +9,24 @@ namespace HubBuilding
         private const int OriginX = 150;
         private const int OriginY = 150;
         
-        public int x; 
-        public int y;
+        public int X; 
+        public int Y;
 
         public GridLocation(int x, int y)
         {
-            this.x = x;
-            this.y = y;
+            X = x;
+            Y = y;
         }
 
         public Vector3 ToWorldCoords()
         {
-            return ToWorldCoords(x, y);
+            return ToWorldCoords(X, Y);
         }
 
         public Vector3 FootprintCenter(int sizeX, int sizeY)
         {
-            float centerX = x + (sizeX - 1) * 0.5f;
-            float centerY = y + (sizeY - 1) * 0.5f;
+            float centerX = X + (sizeX - 1) * 0.5f;
+            float centerY = Y + (sizeY - 1) * 0.5f;
             return ToWorldCoords(centerX, centerY);
         }
 
@@ -57,12 +57,12 @@ namespace HubBuilding
             return new GridLocation(gridX, gridY);
         }
     
-        public Vector2 ToVector2() => new Vector2(x, y);
+        public Vector2 ToVector2() => new Vector2(X, Y);
 
         public void ChangeLocation(int x, int y)
         {
-            this.x = x;
-            this.y = y;
+            this.X = x;
+            this.Y = y;
         }
     }
 }

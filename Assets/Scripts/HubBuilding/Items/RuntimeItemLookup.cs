@@ -20,7 +20,7 @@ namespace HubBuilding
             DontDestroyOnLoad(gameObject);
         }
         
-        public SO_HubItem GetHubItem(string id)
+        public SO_HubItem GetHubItem(int id)
         {
             foreach (var item in hubItems)
             {
