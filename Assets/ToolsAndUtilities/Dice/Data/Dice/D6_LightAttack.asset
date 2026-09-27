@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aab300061cd4354e82d470c98ea5ba1, type: 3}
+  m_Name: D6_LightAttack
+  m_EditorClassIdentifier: Assembly-CSharp::DiceTools.SO_Die
+  _displayName: D6 Light Attack
+  _faces:
+  - {fileID: 11400000, guid: 5db31b092894b9c41b8ce02b8b3c770a, type: 2}
+  - {fileID: 11400000, guid: a024251bcde343643890d4bc5f4ed370, type: 2}
+  - {fileID: 11400000, guid: bf24403f7e323804898a71fd0abc3368, type: 2}
+  - {fileID: 11400000, guid: c5e51f535d3b01e428a91697dab7e478, type: 2}
+  - {fileID: 11400000, guid: 21928b0e609e7ff4f85687393026be1a, type: 2}
+  - {fileID: 11400000, guid: 769fb708dc1bfd74fb97215b0b685432, type: 2}
+  _tagStrings: []

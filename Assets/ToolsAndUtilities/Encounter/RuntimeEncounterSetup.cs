@@ -7,6 +7,12 @@ namespace Encounter
     {
         private RuntimeCombatantSetup _playerSetup = null;
         private List<RuntimeCombatantSetup> _enemySetups = new List<RuntimeCombatantSetup>();
+        private RuntimeLocationSetup _locationSetup = null;
+
+
+        public RuntimeCombatantSetup PlayerSetup { get { return _playerSetup; } set { _playerSetup = value; } }
+        public List<RuntimeCombatantSetup> EnemySetups { get { return _enemySetups; } set { _enemySetups = value; } }
+        public RuntimeLocationSetup LocationSetup {  get { return _locationSetup; } set {_locationSetup = value; } }
     }
 }
 

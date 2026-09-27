@@ -3,6 +3,7 @@ using SimpleStateMachine;
 
 namespace Encounter
 {
+    [RequireComponent(typeof(EncounterTestRig))]
     public static class EncounterStates
     {
         public const string SETUP       = "SETUP";
@@ -29,12 +30,18 @@ namespace Encounter
         private IStateBehaviors _playerDeadBehaviors;
         private IStateBehaviors _playerWinBehaviors;
 
+        private EncounterTestRig _testRig;
+
+
         private void Awake()
         {
+            _testRig = GetComponent<EncounterTestRig>();
+
             if ( _stateMachineSO != null)
             {
                 _stateMachine = _stateMachineSO.GetRuntimeSimpleStateMachine();
             }
+
             _setupBehaviors      = new SetupStateBehavior();
             _selectBehaviors     = new SelectStateBehavior();
             _drawupBehaviors     = new DrawupStateBehavior();
@@ -60,14 +67,17 @@ namespace Encounter
 
         private void Start()
         {
-            //
+            if (_stateMachine.CurrentStateName == EncounterStates.SETUP)
+            {
+                _setupBehaviors.DoStateEnteredBehavior(this);
+            }
         }
         private void HandleStateEntered(string enteredState)
         {
             switch (enteredState)
             {
                 case EncounterStates.SETUP:
-                    _setupBehaviors.DoStateEnteredBehavior(this);
+                    // Setup is the initial state, so do this in Start()
                     return;
                 case EncounterStates.DRAWUP:
                     _drawupBehaviors.DoStateEnteredBehavior(this);
@@ -126,6 +136,15 @@ namespace Encounter
                     return;
             }
         }
+
+        //================================
+        // Properties and methods exposed
+        // to the IStateBehaviors
+        //================================
+        public EncounterTestRig TestRig => _testRig;
+        public RuntimeSimpleStateMachine StateMachine => _stateMachine;
+
+
     }
 }
 

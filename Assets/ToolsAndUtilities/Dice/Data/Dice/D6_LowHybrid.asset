@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9aab300061cd4354e82d470c98ea5ba1, type: 3}
-  m_Name: D6_Special
-  m_EditorClassIdentifier: Assembly-CSharp::DiceTools.SO_DieFace
-  _displayName: 
+  m_Name: D6_LowHybrid
+  m_EditorClassIdentifier: Assembly-CSharp::DiceTools.SO_Die
+  _displayName: D6 Low Hybrid
   _faces:
+  - {fileID: 11400000, guid: 2719fdb4d790eea4bb18cea2ae52b231, type: 2}
+  - {fileID: 11400000, guid: e242934d091fabf43a242380c84a0767, type: 2}
+  - {fileID: 11400000, guid: 993466e16bcb54b4c9111ea5ce21b125, type: 2}
   - {fileID: 11400000, guid: 5db31b092894b9c41b8ce02b8b3c770a, type: 2}
   - {fileID: 11400000, guid: a024251bcde343643890d4bc5f4ed370, type: 2}
   - {fileID: 11400000, guid: bf24403f7e323804898a71fd0abc3368, type: 2}
-  - {fileID: 11400000, guid: c5e51f535d3b01e428a91697dab7e478, type: 2}
-  - {fileID: 11400000, guid: 21928b0e609e7ff4f85687393026be1a, type: 2}
-  - {fileID: 11400000, guid: 769fb708dc1bfd74fb97215b0b685432, type: 2}
   _tagStrings: []
