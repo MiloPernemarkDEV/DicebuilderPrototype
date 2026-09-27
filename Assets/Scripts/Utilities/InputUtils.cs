@@ -1,26 +1,27 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Utilities;
 
 public static class InputUtils
 {
-    private static float pressStartTime;
-    private static bool hasTriggered;
+    [DefaultInitStaticField] private static float pressStartTime;
+    [DefaultInitStaticField] private static bool hasTriggered;
     
-    public static bool TryGetPointerPosition(out Vector2 position)
+    public static bool TryGetPointerPosition(out Vector2 outPos)
     {
         if (Touchscreen.current?.primaryTouch.press.isPressed == true)
         {
-            position = Touchscreen.current.primaryTouch.position.ReadValue();
+            outPos = Touchscreen.current.primaryTouch.position.ReadValue();
             return true;
         }
 
         if (Mouse.current != null)
         {
-            position = Mouse.current.position.ReadValue();
+            outPos = Mouse.current.position.ReadValue();
             return true;
         }
 
-        position = default;
+        outPos = default;
         return false;
     }
 
@@ -54,12 +55,5 @@ public static class InputUtils
             hasTriggered = false;   
         }
         return false; 
-    }
-
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-    private static void ResetStaticVariables()
-    {
-        pressStartTime = -1f;
-        hasTriggered = false;
     }
 }
