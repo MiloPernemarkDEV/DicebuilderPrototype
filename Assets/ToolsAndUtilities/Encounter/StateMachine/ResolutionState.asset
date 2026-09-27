@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cae4b7e16077f74c8ec7566dcb0f450, type: 3}
+  m_Name: ResolutionState
+  m_EditorClassIdentifier: Assembly-CSharp::SimpleStateMachine.SO_SimpleState
+  _stateString: RESOLUTION
+  _stateDescription: What happens during this state
+  _toStates:
+  - {fileID: 11400000, guid: ed651a671bccea743abc3f7a6a060839, type: 2}

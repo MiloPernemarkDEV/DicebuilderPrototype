@@ -16,7 +16,6 @@ public class TweenTester : MonoBehaviour
         {
             testFloat = value.x;
             transform.localScale = new Vector3(testFloat, testFloat, testFloat);
-            Debug.Log(testFloat);
         };
         testTween.StartTween();
     }

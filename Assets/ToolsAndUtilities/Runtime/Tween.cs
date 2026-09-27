@@ -19,7 +19,7 @@ namespace Tweens
     }
      */
 
-    public class Tween : MonoBehaviour, ITween
+    public sealed class Tween : MonoBehaviour, ITween
     {
         public System.Action<Vector3> OnValueUpdated;
         public System.Action OnFinished;

@@ -1,10 +1,19 @@
-using UnityEngine;
+using Encounter;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 namespace SimpleStateMachine
 {
-    public class RuntimeSimpleStateMachine
+
+    public interface IStateBehaviors
+    {
+        public void DoStateEnteredBehavior(EncounterManager em);
+        public void DoStateExitedBehavior(EncounterManager em);
+        public void DoUpdateBehavior(EncounterManager em);
+    }
+
+    public sealed class RuntimeSimpleStateMachine
     {
         private string _stateMachineName;
         private List<RuntimeSimpleState> _states;
