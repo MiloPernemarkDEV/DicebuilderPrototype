@@ -19,6 +19,11 @@ namespace Encounter
         private RuntimeDieBag _inPlay;
         private RuntimeDieBag _discardBag;
 
+        public RuntimeDieBag DrawBag => _drawBag;
+        public RuntimeDieBag Inhand => _inHand;
+        public RuntimeDieBag InPlay => _inPlay;
+        public RuntimeDieBag DiscardBag => _discardBag;
+
         // Public constructor
         public CombatantDice(RuntimeDieBag drawBag)
         {
@@ -28,10 +33,7 @@ namespace Encounter
             _discardBag = new RuntimeDieBag();
         }
 
-        private void RecycleDiscards()
-        {
-            // ...
-        }
+        
 
         // ICombatantDice implementation
         public void DrawUp()
@@ -57,6 +59,10 @@ namespace Encounter
         }
 
         // ...
+        private void RecycleDiscards()
+        {
+            // ...
+        }
 
     }
 }

@@ -401,6 +401,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1599285194}
+  - component: {fileID: 1599285195}
   - component: {fileID: 1599285193}
   m_Layer: 0
   m_Name: EncounterManager
@@ -418,10 +419,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1599285192}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62a1c5bfc4e310542a9818f851404788, type: 3}
+  m_Script: {fileID: 11500000, guid: 73289733689142c488ffd0bc00f696f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EncounterManager
-  _stateMachineSO: {fileID: 11400000, guid: 8c718280325e1254a9a682c95f3b36b8, type: 2}
+  _stateMachineSO: {fileID: 11400000, guid: 53e4272ebcc757b48a5237bbd7fe861b, type: 2}
 --- !u!4 &1599285194
 Transform:
   m_ObjectHideFlags: 0
@@ -437,6 +438,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1599285195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1599285192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 022c153facc3be24a889086d153521bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EncounterTestRig
+  _encounterSetup: {fileID: 11400000, guid: 2d55dd9d57bf48d478ef5ed11b8fde31, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

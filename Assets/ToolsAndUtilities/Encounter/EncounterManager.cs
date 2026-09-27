@@ -1,8 +1,10 @@
 using UnityEngine;
 using SimpleStateMachine;
+using System.Collections.Generic;
 
 namespace Encounter
 {
+    [RequireComponent(typeof(EncounterTestRig))]
     public static class EncounterStates
     {
         public const string SETUP       = "SETUP";
@@ -28,13 +30,24 @@ namespace Encounter
         private IStateBehaviors _aftermathBehaviors;
         private IStateBehaviors _playerDeadBehaviors;
         private IStateBehaviors _playerWinBehaviors;
+        private EncounterTestRig _testRig;
+        private RuntimeEncounterSetup _encounterSetup;
+        private RuntimeCombatant _playerCombatant = null;
+        private List<RuntimeCombatant> _enemyCombatants = new List<RuntimeCombatant>();
+
+        private Dictionary<string, ICombatantGameObject> _combatantObjects = new Dictionary<string, ICombatantGameObject>();
+
+
 
         private void Awake()
         {
+            _testRig = GetComponent<EncounterTestRig>();
+
             if ( _stateMachineSO != null)
             {
                 _stateMachine = _stateMachineSO.GetRuntimeSimpleStateMachine();
             }
+
             _setupBehaviors      = new SetupStateBehavior();
             _selectBehaviors     = new SelectStateBehavior();
             _drawupBehaviors     = new DrawupStateBehavior();
@@ -60,14 +73,17 @@ namespace Encounter
 
         private void Start()
         {
-            //
+            if (_stateMachine.CurrentStateName == EncounterStates.SETUP)
+            {
+                _setupBehaviors.DoStateEnteredBehavior(this);
+            }
         }
         private void HandleStateEntered(string enteredState)
         {
             switch (enteredState)
             {
                 case EncounterStates.SETUP:
-                    _setupBehaviors.DoStateEnteredBehavior(this);
+                    // Setup is the initial state, so do this in Start()
                     return;
                 case EncounterStates.DRAWUP:
                     _drawupBehaviors.DoStateEnteredBehavior(this);
@@ -125,6 +141,26 @@ namespace Encounter
                 default:
                     return;
             }
+        }
+
+        //================================
+        // Properties and methods exposed
+        // to the IStateBehaviors
+        //================================
+        public EncounterTestRig TestRig => _testRig;
+        public RuntimeSimpleStateMachine StateMachine => _stateMachine;
+
+        public RuntimeEncounterSetup EncounterSetup { get {  return _encounterSetup; } set { _encounterSetup = value; }  }
+
+        public RuntimeCombatant PlayerCombatant { get { return _playerCombatant; } set { _playerCombatant = value; } }
+        public List<RuntimeCombatant> EnemyCombatants {  get { return _enemyCombatants; } }
+        public Dictionary<string, ICombatantGameObject> CombatantObjects => _combatantObjects;
+        public void InstantiateCombatantObject(string id, GameObject prefab)
+        {
+            GameObject go = Instantiate(prefab);
+            go.name = $"COMBATANT_{id}";
+            ICombatantGameObject cgo = go.GetComponent<ICombatantGameObject>();
+            _combatantObjects[id] = cgo;
         }
     }
 }

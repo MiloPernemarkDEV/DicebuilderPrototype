@@ -7,7 +7,7 @@ namespace Encounter
     {
         public void DoStateEnteredBehavior(EncounterManager em)
         {
-
+            Debug.Log($"### {em.name}: Drawup state entered");
         }
         public void DoStateExitedBehavior(EncounterManager em)
         {
