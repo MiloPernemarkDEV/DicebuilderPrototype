@@ -4,13 +4,13 @@ namespace HubBuilding
 {
     public class HubGrid
     {
-        private readonly Tile[,] tiles;
+        private readonly Tile[,] grid;
         private readonly SO_HubBuildingConfig config;
         
         public HubGrid(SO_HubBuildingConfig config)
         {
             this.config = config;
-            tiles = new Tile[config.GridWidth, config.GridHeight];
+            grid = new Tile[config.GridWidth, config.GridHeight];
         }
         
         public bool CanPlace(GridLocation loc, Vector2Int itemTileCount)
@@ -21,7 +21,7 @@ namespace HubBuilding
                 {
                     int finalTileX = loc.x + offsetX;
                     int finalTileY = loc.y + offsetZ;
-                    if (!IsValidGridPosition(finalTileX, finalTileY) || tiles[finalTileX, finalTileY].isActivated)
+                    if (!IsValidGridPosition(finalTileX, finalTileY) || grid[finalTileX, finalTileY].isActivated)
                         return false;
                 }
             }
@@ -31,7 +31,8 @@ namespace HubBuilding
         public bool SubmitEntry(GridEntry entry, GridLocation location, Vector2Int itemTileCount)
         {
             ActivateTiles(location, itemTileCount);
-
+            
+            // Store entry somewhere for serialization
             return true; 
         }
 
@@ -40,7 +41,7 @@ namespace HubBuilding
             for (int offsetX = 0; offsetX < itemTileSize.x; offsetX++)
             {
                 for (int offsetY = 0; offsetY < itemTileSize.y; offsetY++)
-                    tiles[loc.x + offsetX, loc.y + offsetY].isActivated = true;
+                    grid[loc.x + offsetX, loc.y + offsetY].isActivated = true;
             }
         }
         

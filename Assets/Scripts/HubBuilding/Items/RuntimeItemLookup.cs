@@ -4,9 +4,9 @@ using UnityEngine.Serialization;
 
 namespace HubBuilding
 {
-    public class ItemLookupTable : MonoBehaviour
+    public class RuntimeItemLookup : MonoBehaviour
     {
-        public static ItemLookupTable Instance {get; private set; }
+        public static RuntimeItemLookup Instance {get; private set; }
         [SerializeField] private List<SO_HubItem> hubItems = new List<SO_HubItem>();
     
         protected virtual void Awake()

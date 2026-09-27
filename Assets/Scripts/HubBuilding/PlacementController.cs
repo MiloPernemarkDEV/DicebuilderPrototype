@@ -119,6 +119,7 @@ namespace HubBuilding
             if (HubManager.Instance.Grid.SubmitEntry(new GridEntry(location, currentItem.ID), location, itemTileCount))
             { 
                 Object.Instantiate(normalPrefab, footprintCenter, Quaternion.identity);
+                return;
             }
             Debug.Log($"Failed to submit {currentItem.ID} at Location: {location} with footprint: {footprintCenter}");
         }

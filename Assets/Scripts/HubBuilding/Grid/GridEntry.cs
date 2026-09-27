@@ -1,15 +1,15 @@
 using System.Collections.Generic;
 
 namespace HubBuilding
-{
-    public class GridEntry
+{  
+    public struct GridEntry
     {
-        public GridEntry(GridLocation location, string itemId)
+        private int itemId;
+        private GridLocation location;
+        public GridEntry(GridLocation location, int itemId)
         {
            this.itemId = itemId;
            this.location = location;
         }
-        private string itemId;
-        GridLocation location;
     }
 }
