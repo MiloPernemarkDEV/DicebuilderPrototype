@@ -9,11 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75fe3499ae0b20346bfac84475fba855, type: 3}
+  m_Script: {fileID: 11500000, guid: 490aca8f038585349983e34d10dee660, type: 3}
   m_Name: DefaultEnemySetup
   m_EditorClassIdentifier: Assembly-CSharp::Encounter.SO_CombatantSetup
-  _displayName: Default Minion
-  _combatantID: BCD_234
+  _displayName: Minion
   _health: 10
-  _drawBag: {fileID: 11400000, guid: 162c2e1595b62874dacd46148095f8bb, type: 2}
-  _combatantPrefab: {fileID: 3097215497739437989, guid: 95f51d395ecee544d9686c3b80082802, type: 3}
+  _drawBag: {fileID: 11400000, guid: 33f8b50b1d0f19541a8976b0a6643b4b, type: 2}
+  _combatantPrefab: {fileID: 3097215497739437989, guid: ac7107521fa8e2541b6e3e35cbd89759, type: 3}

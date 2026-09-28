@@ -9,15 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9aab300061cd4354e82d470c98ea5ba1, type: 3}
+  m_Script: {fileID: 11500000, guid: 49f4afbbe72461447b989a2698cfbb2b, type: 3}
   m_Name: D6_LightAttack
   m_EditorClassIdentifier: Assembly-CSharp::DiceTools.SO_Die
   _displayName: D6 Light Attack
   _faces:
-  - {fileID: 11400000, guid: 5db31b092894b9c41b8ce02b8b3c770a, type: 2}
-  - {fileID: 11400000, guid: a024251bcde343643890d4bc5f4ed370, type: 2}
-  - {fileID: 11400000, guid: bf24403f7e323804898a71fd0abc3368, type: 2}
-  - {fileID: 11400000, guid: c5e51f535d3b01e428a91697dab7e478, type: 2}
-  - {fileID: 11400000, guid: 21928b0e609e7ff4f85687393026be1a, type: 2}
-  - {fileID: 11400000, guid: 769fb708dc1bfd74fb97215b0b685432, type: 2}
+  - {fileID: 11400000, guid: e24b7a4021723454ea4f77dbe53e9f65, type: 2}
+  - {fileID: 11400000, guid: c29511f1e3f61c04598abe4615d19745, type: 2}
+  - {fileID: 11400000, guid: 86d5c7da7abec1d47a8a33dbe65661b6, type: 2}
+  - {fileID: 11400000, guid: 004153db143d69d4c81ac06ee3fc2c4d, type: 2}
+  - {fileID: 11400000, guid: c7927979603a14c48be1aff2b1a592fe, type: 2}
+  - {fileID: 11400000, guid: ab72e7eec1db3094385136cdf50e31d6, type: 2}
   _tagStrings: []

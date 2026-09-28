@@ -9,22 +9,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8e0d8ba2ff41a4499d017db18a0cbd7, type: 3}
+  m_Script: {fileID: 11500000, guid: 363b66144e61248468534ef890c6f453, type: 3}
   m_Name: DefaultDrawBag
   m_EditorClassIdentifier: Assembly-CSharp::DiceTools.SO_DieBag
-  _displayName: Default Die Bag
+  _displayName: 
   _collectionType: 0
   _dice:
-  - {fileID: 11400000, guid: ebec5d1448cfbe645ac2441a51e34193, type: 2}
-  - {fileID: 11400000, guid: ebec5d1448cfbe645ac2441a51e34193, type: 2}
-  - {fileID: 11400000, guid: ebec5d1448cfbe645ac2441a51e34193, type: 2}
-  - {fileID: 11400000, guid: ebec5d1448cfbe645ac2441a51e34193, type: 2}
-  - {fileID: 11400000, guid: ebec5d1448cfbe645ac2441a51e34193, type: 2}
-  - {fileID: 11400000, guid: 8d10fc470e447014088da657d4e6438d, type: 2}
-  - {fileID: 11400000, guid: 8d10fc470e447014088da657d4e6438d, type: 2}
-  - {fileID: 11400000, guid: 8d10fc470e447014088da657d4e6438d, type: 2}
-  - {fileID: 11400000, guid: 8d10fc470e447014088da657d4e6438d, type: 2}
-  - {fileID: 11400000, guid: 848e21f64f1efbb478d8d3b41d3fb1d4, type: 2}
-  - {fileID: 11400000, guid: 848e21f64f1efbb478d8d3b41d3fb1d4, type: 2}
-  - {fileID: 11400000, guid: 18d6a0bba1ea26e4d9ec6b05cd02a376, type: 2}
-  - {fileID: 11400000, guid: 18d6a0bba1ea26e4d9ec6b05cd02a376, type: 2}
+  - {fileID: 11400000, guid: 13f1af8499a02d8409e98694aa234142, type: 2}
+  - {fileID: 11400000, guid: 13f1af8499a02d8409e98694aa234142, type: 2}
+  - {fileID: 11400000, guid: 13f1af8499a02d8409e98694aa234142, type: 2}
+  - {fileID: 11400000, guid: 13f1af8499a02d8409e98694aa234142, type: 2}
+  - {fileID: 11400000, guid: 567b7dca52c648c429779af128d6a11c, type: 2}
+  - {fileID: 11400000, guid: 567b7dca52c648c429779af128d6a11c, type: 2}
+  - {fileID: 11400000, guid: 567b7dca52c648c429779af128d6a11c, type: 2}
+  - {fileID: 11400000, guid: 567b7dca52c648c429779af128d6a11c, type: 2}
+  - {fileID: 11400000, guid: d7a1cbcd0f5a3274bb392453bf976c4c, type: 2}
+  - {fileID: 11400000, guid: d7a1cbcd0f5a3274bb392453bf976c4c, type: 2}
+  - {fileID: 11400000, guid: 1320069d13047f3499238ab447463d6b, type: 2}
+  - {fileID: 11400000, guid: 1320069d13047f3499238ab447463d6b, type: 2}
