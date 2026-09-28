@@ -49,8 +49,8 @@ namespace Encounter
             }
 
             _setupBehaviors      = new SetupStateBehavior();
-            _selectBehaviors     = new SelectStateBehavior();
             _drawupBehaviors     = new DrawupStateBehavior();
+            _selectBehaviors     = new SelectStateBehavior();
             _rollingBehaviors    = new RollingStateBehavior();
             _resolutionBehaviors = new ResolutionStateBehavior();
             _aftermathBehaviors  = new AftermathStateBehavior();
@@ -147,6 +147,7 @@ namespace Encounter
         // Properties and methods exposed
         // to the IStateBehaviors
         //================================
+        public int MaxInHand = 5;
         public EncounterTestRig TestRig => _testRig;
         public RuntimeSimpleStateMachine StateMachine => _stateMachine;
 

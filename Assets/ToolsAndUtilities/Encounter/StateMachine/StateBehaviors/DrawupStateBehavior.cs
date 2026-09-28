@@ -8,6 +8,18 @@ namespace Encounter
         public void DoStateEnteredBehavior(EncounterManager em)
         {
             Debug.Log($"### {em.name}: Drawup state entered");
+
+            CombatantDice playerDice = em.PlayerCombatant.CombatantDice;
+            playerDice.DrawUp(em.MaxInHand);
+
+            Debug.Log(EncounterTools.DebugCombatant(em, em.PlayerCombatant.RuntimeID, true));
+
+            foreach (RuntimeCombatant enemyCombatant in em.EnemyCombatants)
+            {
+                enemyCombatant.CombatantDice.DrawUp(em.MaxInHand);
+                Debug.Log(EncounterTools.DebugCombatant(em, enemyCombatant.RuntimeID, false));
+            }
+
         }
         public void DoStateExitedBehavior(EncounterManager em)
         {

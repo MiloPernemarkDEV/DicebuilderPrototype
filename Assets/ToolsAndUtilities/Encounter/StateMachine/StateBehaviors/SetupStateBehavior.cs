@@ -27,6 +27,8 @@ namespace Encounter
 
                 em.InstantiateCombatantObject(em.PlayerCombatant.RuntimeID, em.EncounterSetup.PlayerSetup.CombatantPrefab);
 
+                Debug.Log(EncounterTools.DebugCombatant(em, em.PlayerCombatant.RuntimeID, true));
+
                 // create a RuntimeCOmbatant for each enemy
                 foreach (RuntimeCombatantSetup enemySetup in em.EncounterSetup.EnemySetups)
                 {
@@ -39,11 +41,16 @@ namespace Encounter
                     em.EnemyCombatants.Add(rc);
 
                     em.InstantiateCombatantObject(rc.RuntimeID, enemySetup.CombatantPrefab);
+
+                    Debug.Log(EncounterTools.DebugCombatant(em, rc.RuntimeID, false));
                 }
 
-                // set up the location
-
-                //DebugSetup(em);
+                //======
+                // TODO
+                //======
+                // put the location on screen
+                // put the player object on sceen
+                // put the enemy object(s) on screen
 
                 em.StateMachine.TryTakeTransition(EncounterStates.DRAWUP);
 
@@ -63,6 +70,7 @@ namespace Encounter
 
         }
 
+        /*
         private void DebugSetup(EncounterManager em)
         {
             string playerID = em.PlayerCombatant.RuntimeID;
@@ -77,6 +85,7 @@ namespace Encounter
             playerStr += $"{drawBagCount} -- {inHandCount} -- {inPlayCount} -- {discardBagCount} -- {hiStr}";
             Debug.Log(playerStr);
         }
+        */
 
         
 

@@ -5,14 +5,17 @@ using UnityEngine;
 namespace Encounter
 {
 
+    /*
     public interface ICombatantDice
     {
-        public void DrawUp();
+        public void DrawUp(int maxInHand);
     }
-    public class CombatantDice : ICombatantDice
+    */
+
+    public class CombatantDice
     {
 
-        private const int MAX_IN_HAND = 5;
+        //private const int MAX_IN_HAND = 5;
 
         private RuntimeDieBag _drawBag;
         private RuntimeDieBag _inHand;
@@ -36,9 +39,9 @@ namespace Encounter
         
 
         // ICombatantDice implementation
-        public void DrawUp()
+        public void DrawUp(int maxInHand)
         {
-            int diceNeeded = MAX_IN_HAND - _inHand.Dice.Count;
+            int diceNeeded = maxInHand - _inHand.Dice.Count;
 
             if (diceNeeded <= 0)
             {
