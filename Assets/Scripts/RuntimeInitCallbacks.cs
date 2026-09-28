@@ -12,7 +12,7 @@ public static class RuntimeInitCallbacks
     public static void DisableLogs()
     {
 #if UNITY_IOS || UNITY_ANDROID
-            Debug.unityLogger.logEnabled = false;
+        Debug.unityLogger.logEnabled = false;
 #else
         Debug.unityLogger.logEnabled = true;
 #endif  
