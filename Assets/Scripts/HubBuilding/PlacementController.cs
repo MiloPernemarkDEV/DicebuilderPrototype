@@ -59,8 +59,8 @@ namespace HubBuilding
             Ray ray = camera.ScreenPointToRay(screenPos);
 
             if (!Physics.Raycast(ray, out RaycastHit hitInfo, config.MaxDistanceRaycast, config.GroundLayerMask)) return;
-            GridLocation location = GridLocation.FromWorldCoords(hitInfo.point);
-            Vector3 footprintCenter = location.FootprintCenter(itemTileCount.x, itemTileCount.y);
+            GridPosition position = GridPosition.FromWorldCoords(hitInfo.point);
+            Vector3 footprintCenter = position.FootprintCenter(itemTileCount.x, itemTileCount.y);
 
             if (!previewPrefab)
             {
@@ -71,12 +71,12 @@ namespace HubBuilding
             footprintCenter = AdjustPivot(footprintCenter, hitInfo);
             previewPrefab.transform.position = footprintCenter;
 
-            var canPlace = HubManager.Instance.Grid.CanPlace(location, itemTileCount);
+            var canPlace = HubManager.Instance.Grid.CanPlace(position, itemTileCount);
             previewMat.SetColor(canPlace ? config.ValidPlacementColor : config.InvalidPlacementColor);
 
             if (!InputUtils.WasPressedThisFrame() || !canPlace) return;
 
-            SubmitAndInstantiate(location, footprintCenter);
+            SubmitAndInstantiate(position, footprintCenter);
             ResetState();
             Object.Destroy(previewPrefab);
         }
@@ -114,14 +114,14 @@ namespace HubBuilding
             currentItem = null;
         }
 
-        private void SubmitAndInstantiate(GridLocation location, Vector3 footprintCenter)
+        private void SubmitAndInstantiate(GridPosition position, Vector3 footprintCenter)
         {
-            if (HubManager.Instance.Grid.SubmitEntry(new GridEntry(location, currentItem.ID), location, itemTileCount))
+            if (HubManager.Instance.Grid.SubmitEntry(new GridEntry(position, currentItem.ID), position, itemTileCount))
             { 
                 Object.Instantiate(normalPrefab, footprintCenter, Quaternion.identity);
                 return;
             }
-            Debug.Log($"Failed to submit {currentItem.ID} at Location: {location} with footprint: {footprintCenter}");
+            Debug.Log($"Failed to submit {currentItem.ID} at Location: {position} with footprint: {footprintCenter}");
         }
     }
 }

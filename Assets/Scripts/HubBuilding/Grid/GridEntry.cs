@@ -4,12 +4,14 @@ namespace HubBuilding
 {  
     public struct GridEntry
     {
-        private string itemId;
-        private GridLocation location;
-        public GridEntry(GridLocation location, string itemId)
+        public GridEntry(GridPosition position, string itemId)
         {
-           this.itemId = itemId;
-           this.location = location;
+           ItemId = itemId;
+           Position = position;
         }
+
+        public string ItemId { get; }
+
+        public GridPosition Position { get; set; }
     }
 }

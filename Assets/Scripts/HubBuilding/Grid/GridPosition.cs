@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace HubBuilding
 {
-    public struct GridLocation
+    public struct GridPosition
     {
         private const float TileWidth = 1.0f;
         private const float TileHeight = 0.5f; 
@@ -12,7 +12,7 @@ namespace HubBuilding
         public int X; 
         public int Y;
 
-        public GridLocation(int x, int y)
+        public GridPosition(int x, int y)
         {
             X = x;
             Y = y;
@@ -46,7 +46,7 @@ namespace HubBuilding
             return new Vector3(worldX, 0f, worldZ);
         }
 
-        public static GridLocation FromWorldCoords(Vector3 worldPos)
+        public static GridPosition FromWorldCoords(Vector3 worldPos)
         {
             float cartX = worldPos.x / TileWidth;
             float cartZ = worldPos.z / TileHeight;
@@ -54,7 +54,7 @@ namespace HubBuilding
             int gridX = Mathf.FloorToInt(cartZ + cartX) + OriginX;
             int gridY = Mathf.FloorToInt(cartZ - cartX) + OriginY;
 
-            return new GridLocation(gridX, gridY);
+            return new GridPosition(gridX, gridY);
         }
     
         public Vector2 ToVector2() => new Vector2(X, Y);
