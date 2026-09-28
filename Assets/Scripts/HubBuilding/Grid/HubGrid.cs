@@ -16,13 +16,13 @@ namespace HubBuilding
             gridSize.y = config.GridHeight;
         }
 
-        public void ResetTiles(GridPosition pos)
+        public void ResetActiveTiles(GridPosition pos)
         {
             if (!IsActiveGridPosition(pos))
             {
                 return; 
             }
-            grid[pos.X, pos.Y].isActivated = false;
+            grid[pos.x, pos.y].IsActive = false;
         }
         
         public bool CanPlace(GridPosition pos, Vector2Int itemTileCount)
@@ -31,39 +31,46 @@ namespace HubBuilding
             {
                 for (int offsetZ = 0; offsetZ < itemTileCount.y; offsetZ++)
                 {
-                    int finalTileX = pos.X + offsetX;
-                    int finalTileY = pos.Y + offsetZ;
-                    if (!IsValidGridPosition(finalTileX, finalTileY) || grid[finalTileX, finalTileY].isActivated)
+                    int finalTileX = pos.x + offsetX;
+                    int finalTileY = pos.y + offsetZ;
+                    if (!IsValidGridPosition(finalTileX, finalTileY) || grid[finalTileX, finalTileY].IsActive)
                         return false;
                 }
             }
             return true;
         }
         
-        // Entry has the id, activate outs the final tile positions then send to buffer ready to be serialized 
-        // When game loads 
-        public bool SubmitEntry(GridEntry entry, GridPosition pos, Vector2Int itemTileCount)
+        public bool SubmitEntry(GridEntry entry)
         {
-            ActivateTiles(entry, pos, itemTileCount, out var finalEntryTiles);
+            ActivateTiles(entry, entry.position, entry.itemTileSize, out var finalItemGridPos);
             
-            // Store entry somewhere for serialization
+            GridSerializer.AddEntry(entry);
             return true; 
         }
 
-        private void ActivateTiles(GridEntry entry, GridPosition pos, Vector2Int itemTileSize, out Vector2Int entryFinalTiles)
+        /* public void LoadGrid(GridSerializer.GridEntryList gridList)
         {
-            entryFinalTiles = Vector2Int.zero;
+            foreach (var entry in gridList.entries)
+            {
+                SubmitEntry(entry); 
+            }
+        }
+        */
+
+        private void ActivateTiles(GridEntry entry, GridPosition pos, Vector2Int itemTileSize, out GridPosition finalItemGridPos)
+        {
+            finalItemGridPos = new GridPosition();
             
             for (int offsetX = 0; offsetX < itemTileSize.x; offsetX++)
             {
                 for (int offsetY = 0; offsetY < itemTileSize.y; offsetY++)
                 {
-                    int finalTileX = pos.X + offsetX;
-                    int finalTileY = pos.Y + offsetY;
+                    int finalTileX = pos.x + offsetX;
+                    int finalTileY = pos.y + offsetY;
                     
-                    grid[finalTileX, finalTileY].isActivated = true;
-                    entryFinalTiles.x = finalTileX;
-                    entryFinalTiles.y = finalTileY; 
+                    grid[finalTileX, finalTileY].IsActive = true;
+                    finalItemGridPos.x = finalTileX;
+                    finalItemGridPos.y = finalTileY; 
                 }
             }
         }
@@ -75,7 +82,7 @@ namespace HubBuilding
 
         private bool IsActiveGridPosition(GridPosition pos)
         {
-            return grid[pos.X , pos.Y].isActivated;
+            return grid[pos.x , pos.y].IsActive;
         }
     }
 }

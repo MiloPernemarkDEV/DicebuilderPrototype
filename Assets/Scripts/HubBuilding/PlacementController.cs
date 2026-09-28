@@ -8,8 +8,9 @@ namespace HubBuilding
         private readonly SO_HubBuildingConfig config; 
         private readonly Camera camera;
 
-        private bool isActive;
+        private bool placementIsActive;
         private bool wasJustActivated;
+        private bool movePlacedItemIsActive;
         
         private Vector2Int itemTileCount;
         private GameObject previewPrefab;
@@ -17,6 +18,9 @@ namespace HubBuilding
         private GameObject previewObject;
         private PreviewMaterial previewMat;
         private SO_HubItem currentItem;
+        private bool hasResetOldTiles;
+        private GridPosition oldPos;
+
 
         public PlacementController(SO_HubBuildingConfig config)
         {
@@ -24,9 +28,9 @@ namespace HubBuilding
             camera = Camera.main;
         }
 
-        public void Activate(SO_HubItem currentItem)
+        public void ActivatePlacement(SO_HubItem currentItem)
         {
-            isActive = true;
+            placementIsActive = true;
             wasJustActivated = true;
             this.currentItem = currentItem;
             
@@ -35,9 +39,21 @@ namespace HubBuilding
             previewObject = currentItem.TranslucentPrefab;
         }
         
+        public void ActivateMovePlacedItem(SO_HubItem currentItem, GridPosition oldPos)
+        {
+            movePlacedItemIsActive = true;
+            wasJustActivated = true;
+            this.currentItem = currentItem;
+            
+            itemTileCount = currentItem.TileCount;
+            normalPrefab = currentItem.NormalPrefab;
+            previewObject = currentItem.TranslucentPrefab;
+            this.oldPos = oldPos;
+        }
+        
         public void Run()
         {
-            if (!isActive)
+            if (!placementIsActive)
             {
                 return;
             }
@@ -46,7 +62,12 @@ namespace HubBuilding
             {
                 return;
             }
-                
+
+            if (movePlacedItemIsActive)
+            {
+                MovePlacedItem(oldPos);
+                return;
+            } 
             HandlePlacement();
         }
         
@@ -59,8 +80,8 @@ namespace HubBuilding
             Ray ray = camera.ScreenPointToRay(screenPos);
 
             if (!Physics.Raycast(ray, out RaycastHit hitInfo, config.MaxDistanceRaycast, config.GroundLayerMask)) return;
-            GridPosition position = GridPosition.FromWorldCoords(hitInfo.point);
-            Vector3 footprintCenter = position.FootprintCenter(itemTileCount.x, itemTileCount.y);
+            var position = GridPosition.FromWorldCoords(hitInfo.point);
+            var footprintCenter = position.FootprintCenter(itemTileCount.x, itemTileCount.y);
 
             if (!previewPrefab)
             {
@@ -76,9 +97,25 @@ namespace HubBuilding
 
             if (!InputUtils.WasPressedThisFrame() || !canPlace) return;
 
-            SubmitAndInstantiate(position, footprintCenter);
+            SubmitAndInstantiate(new GridEntry(
+                position, 
+                currentItem.ID, 
+                currentItem.TileCount), 
+                footprintCenter
+            );
+            
             ResetState();
             Object.Destroy(previewPrefab);
+        }
+
+        private void MovePlacedItem(GridPosition oldPos)
+        {
+            if (!hasResetOldTiles)
+            {
+                HubManager.Instance.Grid.ResetActiveTiles(oldPos);
+                hasResetOldTiles = true;
+            }
+            HandlePlacement();
         }
         
         private Vector3 AdjustPivot(Vector3 footprintCenter, RaycastHit hitInfo)
@@ -110,18 +147,16 @@ namespace HubBuilding
             previewPrefab = null;
             previewMat = null;
             normalPrefab = null;
-            isActive = false;
+            placementIsActive = false;
             currentItem = null;
         }
 
-        private void SubmitAndInstantiate(GridPosition position, Vector3 footprintCenter)
+        private void SubmitAndInstantiate(GridEntry entry, Vector3 footprintCenter)
         {
-            if (HubManager.Instance.Grid.SubmitEntry(new GridEntry(position, currentItem.ID), position, itemTileCount))
+            if (HubManager.Instance.Grid.SubmitEntry(entry)) 
             { 
                 Object.Instantiate(normalPrefab, footprintCenter, Quaternion.identity);
-                return;
             }
-            Debug.Log($"Failed to submit {currentItem.ID} at Location: {position} with footprint: {footprintCenter}");
         }
     }
 }

@@ -1,17 +1,21 @@
-using System.Collections.Generic;
+using System;
+using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace HubBuilding
-{  
-    public struct GridEntry
+{
+    [Serializable]
+    public class GridEntry
     {
-        public GridEntry(GridPosition position, string itemId)
+        public string itemId;
+        public GridPosition position;
+        public Vector2Int itemTileSize; 
+
+        public GridEntry(GridPosition position, string itemId, Vector2Int itemTileSize)
         {
-           ItemId = itemId;
-           Position = position;
+            this.itemId = itemId;
+            this.position = position;
+            this.itemTileSize = itemTileSize;
         }
-
-        public string ItemId { get; }
-
-        public GridPosition Position { get; set; }
     }
 }

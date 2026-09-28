@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Reflection;
+using HubBuilding;
 using UnityEngine;
 using Utilities;
 
@@ -51,6 +53,9 @@ public static class RuntimeInitCallbacks
         if (t == typeof(float)) field.SetValue(null, 0.0f);
         else if (t == typeof(int)) field.SetValue(null, 0);
         else if (t == typeof(string)) field.SetValue(null, string.Empty);
+        
+        else if (t == typeof(List<string>)) field.SetValue(null, new List<string>());
+        else if (t == typeof(List<GridEntry>)) field.SetValue(null, new List<GridEntry>());
         else field.SetValue(null, null); 
     }
 
@@ -60,6 +65,9 @@ public static class RuntimeInitCallbacks
         if (t == typeof(float)) prop.SetValue(null, 0.0f);
         else if (t == typeof(int)) prop.SetValue(null, 0);
         else if (t == typeof(string)) prop.SetValue(null, string.Empty);
+        
+        else if (t == typeof(List<string>)) prop.SetValue(null, new List<string>());
+        else if (t == typeof(List<GridEntry>)) prop.SetValue(null, new List<GridEntry>());
         else prop.SetValue(null, null);
     }
     

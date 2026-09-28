@@ -5,13 +5,15 @@ namespace HubBuilding
     [CreateAssetMenu(fileName = "SO_HubBuildingConfig", menuName = "HubBuilding/SO_HubBuildingConfig", order = 0)]
     public class SO_HubBuildingConfig : ScriptableObject
     {
+        [Header("Placement Settings")]
         [SerializeField] private float maxDistanceRaycast;
         [SerializeField] private LayerMask groundLayerMask;
         [SerializeField] private Color validPlacementColor; 
         [SerializeField] private Color invalidPlacementColor;
+        
+        [Header("Grid Settings")]
         [SerializeField] private int gridWidth; 
         [SerializeField] private int gridHeight;
-        [SerializeField] private Material gridMaterial;
         
         public float MaxDistanceRaycast => maxDistanceRaycast;
         public LayerMask GroundLayerMask => groundLayerMask;
@@ -19,6 +21,6 @@ namespace HubBuilding
         public Color InvalidPlacementColor => invalidPlacementColor;
         public int GridWidth => gridWidth;
         public int GridHeight => gridHeight;
-        public Material  GridMaterial => gridMaterial;
+        // public Material  GridMaterial => gridMaterial;
     }
 }

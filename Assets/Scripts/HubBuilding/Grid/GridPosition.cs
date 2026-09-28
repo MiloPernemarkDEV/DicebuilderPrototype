@@ -1,32 +1,41 @@
+using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace HubBuilding
 {
-    public struct GridPosition
+    [Serializable]
+    public class GridPosition
     {
         private const float TileWidth = 1.0f;
         private const float TileHeight = 0.5f; 
         private const int OriginX = 150;
         private const int OriginY = 150;
         
-        public int X; 
-        public int Y;
+        public int x; 
+        public int y;
+
+        public GridPosition()
+        {
+            x = 0;
+            y = 0;
+        }
 
         public GridPosition(int x, int y)
         {
-            X = x;
-            Y = y;
+            this.x = x;
+            this.y = y;
         }
 
         public Vector3 ToWorldCoords()
         {
-            return ToWorldCoords(X, Y);
+            return ToWorldCoords(x, y);
         }
 
         public Vector3 FootprintCenter(int sizeX, int sizeY)
         {
-            float centerX = X + (sizeX - 1) * 0.5f;
-            float centerY = Y + (sizeY - 1) * 0.5f;
+            float centerX = x + (sizeX - 1) * 0.5f;
+            float centerY = y + (sizeY - 1) * 0.5f;
             return ToWorldCoords(centerX, centerY);
         }
 
@@ -57,12 +66,12 @@ namespace HubBuilding
             return new GridPosition(gridX, gridY);
         }
     
-        public Vector2 ToVector2() => new Vector2(X, Y);
+        public Vector2 ToVector2() => new Vector2(x, y);
 
-        public void ChangeLocation(int x, int y)
+        public void ChangeLocation(int newX, int newY)
         {
-            this.X = x;
-            this.Y = y;
+            x = newX;
+            y = newY;
         }
     }
 }
