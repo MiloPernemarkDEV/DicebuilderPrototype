@@ -1,3 +1,4 @@
+using DiceTools;
 using UnityEngine;
 
 namespace Encounter
@@ -5,6 +6,8 @@ namespace Encounter
     public interface IPlayerInHand
     {
         public void SetEnabled(bool enabled);
+        public void UpdateDice(RuntimeDieBag inHandDice);
+        public event System.Action<string> InHandDieSelected;
     }
 
     public sealed class EncounterPresentationLayer : MonoBehaviour

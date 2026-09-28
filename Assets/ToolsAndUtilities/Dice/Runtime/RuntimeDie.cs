@@ -13,10 +13,13 @@ namespace DiceTools
 
         private bool _isRolling = false;
 
+        private string _runtimeID = string.Empty;
+
 
         public string DisplayName { get { return _displayName; } set { _displayName = value; } }
         public List<RuntimeDieFace> Faces { get { return _faces; } set { _faces = value; } }
         public List<string> TagStrings {  get { return _tagStrings; } set {_tagStrings = value; } }
+        public string RuntimeID => _runtimeID;
 
         public RuntimeDieFace GetCurrentFace()
         {
@@ -28,6 +31,10 @@ namespace DiceTools
             int nextFaceIdx = FaceAdjacencies.GetRandomAdjacentFaceIndex(_currentFaceIndex, _faces.Count);
             nextFaceIdx = nextFaceIdx % _faces.Count;
             _currentFaceIndex = nextFaceIdx;
+        }
+        public void SetRuntimeID()
+        {
+            _runtimeID = System.Guid.NewGuid().ToString();
         }
 
     }

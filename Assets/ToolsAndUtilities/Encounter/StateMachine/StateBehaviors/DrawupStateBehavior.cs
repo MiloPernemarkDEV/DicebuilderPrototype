@@ -20,6 +20,10 @@ namespace Encounter
                 Debug.Log(EncounterTools.DebugCombatant(em, enemyCombatant.RuntimeID, false));
             }
 
+            // show the player's in-hand dice
+            em.PresentationLayer.PlayerInHand.UpdateDice(em.PlayerCombatant.CombatantDice.Inhand);
+            em.PresentationLayer.PlayerInHand.SetEnabled(true);
+
         }
         public void DoStateExitedBehavior(EncounterManager em)
         {

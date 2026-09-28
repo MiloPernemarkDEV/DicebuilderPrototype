@@ -303,7 +303,7 @@ GameObject:
   - component: {fileID: 535177937}
   - component: {fileID: 535177936}
   m_Layer: 5
-  m_Name: Button (2)
+  m_Name: Center
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -371,7 +371,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 535177937}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1906598844}
+        m_TargetAssemblyTypeName: Encounter.PlayerInHand_5Buttons, Assembly-CSharp
+        m_MethodName: HandleButtonPressed
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &535177937
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -526,7 +538,7 @@ GameObject:
   - component: {fileID: 810937194}
   - component: {fileID: 810937193}
   m_Layer: 5
-  m_Name: Button (4)
+  m_Name: Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -594,7 +606,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 810937194}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1906598844}
+        m_TargetAssemblyTypeName: Encounter.PlayerInHand_5Buttons, Assembly-CSharp
+        m_MethodName: HandleButtonPressed
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &810937194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -646,7 +670,7 @@ GameObject:
   - component: {fileID: 1005921346}
   - component: {fileID: 1005921345}
   m_Layer: 5
-  m_Name: Button (3)
+  m_Name: CenterRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -714,7 +738,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1005921346}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1906598844}
+        m_TargetAssemblyTypeName: Encounter.PlayerInHand_5Buttons, Assembly-CSharp
+        m_MethodName: HandleButtonPressed
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1005921346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -840,7 +876,7 @@ GameObject:
   - component: {fileID: 1766225055}
   - component: {fileID: 1766225054}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -908,7 +944,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1766225055}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1906598844}
+        m_TargetAssemblyTypeName: Encounter.PlayerInHand_5Buttons, Assembly-CSharp
+        m_MethodName: HandleButtonPressed
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1766225055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1027,6 +1075,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3759289404503ae4396f16e0989f0666, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInHand_5Buttons
+  _diceButtons:
+  - {fileID: 1766225054}
+  - {fileID: 1985460196}
+  - {fileID: 535177936}
+  - {fileID: 1005921345}
+  - {fileID: 810937193}
 --- !u!1 &1985460194
 GameObject:
   m_ObjectHideFlags: 0
@@ -1040,7 +1094,7 @@ GameObject:
   - component: {fileID: 1985460197}
   - component: {fileID: 1985460196}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: CenterLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1108,7 +1162,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1985460197}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1906598844}
+        m_TargetAssemblyTypeName: Encounter.PlayerInHand_5Buttons, Assembly-CSharp
+        m_MethodName: HandleButtonPressed
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1985460197
 MonoBehaviour:
   m_ObjectHideFlags: 0

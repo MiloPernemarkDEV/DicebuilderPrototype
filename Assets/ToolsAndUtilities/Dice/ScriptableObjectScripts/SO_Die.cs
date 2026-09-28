@@ -25,6 +25,7 @@ namespace DiceTools
                     die.TagStrings.Add(tag);
                 }
             }
+            die.SetRuntimeID();
             return die;
         }
     }
