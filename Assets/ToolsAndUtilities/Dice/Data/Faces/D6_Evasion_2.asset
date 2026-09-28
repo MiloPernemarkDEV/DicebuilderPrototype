@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 271e9607d862f8746b5aafe71ebcb91c, type: 3}
+  m_Script: {fileID: 11500000, guid: 5d93e0294fc449348a9b4dcebce668d1, type: 3}
   m_Name: D6_Evasion_2
   m_EditorClassIdentifier: Assembly-CSharp::DiceTools.SO_DieFace
   _integerValue: 2
   _tagStrings:
   - ACTION.EVASION
-  _imageSprite: {fileID: 21300000, guid: 415c71ca23e09a749a8d35fc581ea57d, type: 3}
+  _imageSprite: {fileID: 21300000, guid: f6ab2b107db785241b4eedd5ea221616, type: 3}

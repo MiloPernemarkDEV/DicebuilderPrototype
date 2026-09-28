@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cae4b7e16077f74c8ec7566dcb0f450, type: 3}
+  m_Script: {fileID: 11500000, guid: 164a5f0d78b8ed045830134a0f02fc89, type: 3}
   m_Name: DrawupState
   m_EditorClassIdentifier: Assembly-CSharp::SimpleStateMachine.SO_SimpleState
   _stateString: DRAWUP
   _stateDescription: What happens during this state
   _toStates:
-  - {fileID: 11400000, guid: 1ac4394d41ab6884eb920ea05ab5fff2, type: 2}
+  - {fileID: 11400000, guid: 5b57a9c5b08f3bf46b357b482fe10845, type: 2}

@@ -9,15 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9aab300061cd4354e82d470c98ea5ba1, type: 3}
+  m_Script: {fileID: 11500000, guid: 49f4afbbe72461447b989a2698cfbb2b, type: 3}
   m_Name: D6_HighHybrid
   m_EditorClassIdentifier: Assembly-CSharp::DiceTools.SO_Die
-  _displayName: D6 HighHybrid
+  _displayName: D6 High Hybrid
   _faces:
-  - {fileID: 11400000, guid: ce9372c9b59bac24e82c3e0f410adb18, type: 2}
-  - {fileID: 11400000, guid: 231a283131d229248ad2cb87f572af65, type: 2}
-  - {fileID: 11400000, guid: ae1f15debed329c4fa7b41b8f77c350a, type: 2}
-  - {fileID: 11400000, guid: c5e51f535d3b01e428a91697dab7e478, type: 2}
-  - {fileID: 11400000, guid: 21928b0e609e7ff4f85687393026be1a, type: 2}
-  - {fileID: 11400000, guid: 769fb708dc1bfd74fb97215b0b685432, type: 2}
+  - {fileID: 11400000, guid: b0817d1707433e14e87e719c53f22a12, type: 2}
+  - {fileID: 11400000, guid: fdf34a8dac1a85b4ca1bb31b468845c7, type: 2}
+  - {fileID: 11400000, guid: 1cb6c30c1678f2f46aecda5711518b09, type: 2}
+  - {fileID: 11400000, guid: 004153db143d69d4c81ac06ee3fc2c4d, type: 2}
+  - {fileID: 11400000, guid: c7927979603a14c48be1aff2b1a592fe, type: 2}
+  - {fileID: 11400000, guid: ab72e7eec1db3094385136cdf50e31d6, type: 2}
   _tagStrings: []

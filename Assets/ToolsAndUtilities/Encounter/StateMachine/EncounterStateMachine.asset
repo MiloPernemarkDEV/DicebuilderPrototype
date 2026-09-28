@@ -9,16 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa242ea7898db8541b9a6b2b1c020425, type: 3}
+  m_Script: {fileID: 11500000, guid: 668124cc1e8987046aa027c7a1802521, type: 3}
   m_Name: EncounterStateMachine
   m_EditorClassIdentifier: Assembly-CSharp::SimpleStateMachine.SO_SimpleStateMachine
-  _stateMachineName: My state machine
+  _stateMachineName: Encounter State Machine
   _states:
-  - {fileID: 11400000, guid: 0cafb7db611243945a0e59f284e91c6d, type: 2}
-  - {fileID: 11400000, guid: ef1a3561ef1390840a000dfbe7914074, type: 2}
-  - {fileID: 11400000, guid: 1ac4394d41ab6884eb920ea05ab5fff2, type: 2}
-  - {fileID: 11400000, guid: 3458445de7aae714a8208f2d17af233a, type: 2}
-  - {fileID: 11400000, guid: 10e52ea42891a234881f30353c9a5f5d, type: 2}
-  - {fileID: 11400000, guid: ed651a671bccea743abc3f7a6a060839, type: 2}
-  - {fileID: 11400000, guid: cd7f80a0bccae704bbb417f4a147bcc0, type: 2}
-  - {fileID: 11400000, guid: 69352189c86c40643a5b5104b7a5dfe1, type: 2}
+  - {fileID: 11400000, guid: 4f335f4415996824890dd790cdc166bd, type: 2}
+  - {fileID: 11400000, guid: 7e6e49fafb138bd46beb7cec4b5e24d8, type: 2}
+  - {fileID: 11400000, guid: 5b57a9c5b08f3bf46b357b482fe10845, type: 2}
+  - {fileID: 11400000, guid: ffb9ec0bd7b3b97439d4ceb0af843dc1, type: 2}
+  - {fileID: 11400000, guid: 6fad5303148f439498e2c8566d19a1a4, type: 2}
+  - {fileID: 11400000, guid: f8ffdef179daa6e4ba5f24bf0ead2a0d, type: 2}
+  - {fileID: 11400000, guid: 537c6b21a340b0f4a869b431472772ae, type: 2}
+  - {fileID: 11400000, guid: 6c3a17cc5658bc640bb4265bcaadebcf, type: 2}
