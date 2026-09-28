@@ -20,7 +20,7 @@ namespace HubBuilding
         private SO_HubItem currentItem;
         private bool hasResetOldTiles;
         private GridPosition oldPos;
-
+        private Quaternion targetRotation; 
 
         public PlacementController(SO_HubBuildingConfig config)
         {
@@ -33,31 +33,27 @@ namespace HubBuilding
             placementIsActive = true;
             wasJustActivated = true;
             this.currentItem = currentItem;
+            targetRotation = Quaternion.Euler(currentItem.RotationOffset);
             
             itemTileCount = currentItem.TileCount;
             normalPrefab = currentItem.NormalPrefab;
             previewObject = currentItem.TranslucentPrefab;
         }
         
-        public void ActivateMovePlacedItem(SO_HubItem currentItem, GridPosition oldPos)
+        public void ActivateMovePlacedItem(HubItemMovedData moveData)
         {
             movePlacedItemIsActive = true;
             wasJustActivated = true;
-            this.currentItem = currentItem;
+            currentItem = moveData.Item;
             
             itemTileCount = currentItem.TileCount;
             normalPrefab = currentItem.NormalPrefab;
             previewObject = currentItem.TranslucentPrefab;
-            this.oldPos = oldPos;
+            oldPos = moveData.OldPosition;
         }
         
-        public void Run()
+        public void RunPlacementLoop()
         {
-            if (!placementIsActive)
-            {
-                return;
-            }
-
             if (!camera || Mouse.current == null)
             {
                 return;
@@ -66,9 +62,13 @@ namespace HubBuilding
             if (movePlacedItemIsActive)
             {
                 MovePlacedItem(oldPos);
-                return;
-            } 
-            HandlePlacement();
+            }
+
+            if (placementIsActive)
+            {
+                Debug.Log("HandlePlacement"); 
+                HandlePlacement();
+            }
         }
         
         private void HandlePlacement()
@@ -85,7 +85,7 @@ namespace HubBuilding
 
             if (!previewPrefab)
             {
-                previewPrefab = UnityEngine.Object.Instantiate(previewObject, footprintCenter, Quaternion.identity);
+                previewPrefab = Object.Instantiate(previewObject, footprintCenter, targetRotation);
                 previewMat = new PreviewMaterial(previewPrefab);
             }
 
@@ -120,16 +120,7 @@ namespace HubBuilding
         
         private Vector3 AdjustPivot(Vector3 footprintCenter, RaycastHit hitInfo)
         {
-            if (previewPrefab.TryGetComponent<Renderer>(out var renderer))
-            {
-                float pivotToBottomOffset = renderer.localBounds.center.y - renderer.localBounds.extents.y;
-                footprintCenter.y = hitInfo.point.y - pivotToBottomOffset;
-            }
-            else
-            {
-                footprintCenter.y = hitInfo.point.y + (previewPrefab.transform.localScale.y * 0.5f);
-            }
-
+            footprintCenter.y = hitInfo.point.y;
             return footprintCenter; 
         }
         
@@ -153,9 +144,9 @@ namespace HubBuilding
 
         private void SubmitAndInstantiate(GridEntry entry, Vector3 footprintCenter)
         {
-            if (HubManager.Instance.Grid.SubmitEntry(entry)) 
-            { 
-                Object.Instantiate(normalPrefab, footprintCenter, Quaternion.identity);
+            if (HubManager.Instance.Grid.SubmitEntry(entry))
+            {
+                Object.Instantiate(normalPrefab, footprintCenter, targetRotation);
             }
         }
     }

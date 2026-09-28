@@ -11,12 +11,14 @@ namespace HubBuilding
         [SerializeField] private GameObject translucentPrefab; 
         [SerializeField] private Vector2Int tileCount; 
         [SerializeField] private bool hasSlots;
+        [SerializeField] private Vector3 rotationOffset;
 
         public string ID => hubItemId;
         public GameObject NormalPrefab => normalPrefab;
         public GameObject TranslucentPrefab => translucentPrefab;
         public Vector2Int TileCount => tileCount;
         public bool HasSlots => hasSlots;
+        public Vector3 RotationOffset => rotationOffset;
         
         // [Header("Dice")]
         

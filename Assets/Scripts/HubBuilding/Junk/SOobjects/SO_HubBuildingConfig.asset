@@ -18,6 +18,6 @@ MonoBehaviour:
     m_Bits: 64
   validPlacementColor: {r: 0.100182235, g: 1, b: 0, a: 0}
   invalidPlacementColor: {r: 1, g: 0, b: 0, a: 0}
+  movePlacedItemHoldTime: 2
   gridWidth: 300
   gridHeight: 300
-  gridMaterial: {fileID: 0}

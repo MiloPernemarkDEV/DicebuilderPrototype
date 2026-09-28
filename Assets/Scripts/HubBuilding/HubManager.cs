@@ -9,19 +9,21 @@ namespace HubBuilding
         
         [SerializeField] private SO_HubBuildingConfig config;
         [SerializeField] private SO_EventSO_HubItemPayload placeItemEvent;
-        [SerializeField] private SO_EventSO_HubItemPayload movePlacedItemEvent;
+        [SerializeField] private SO_EventHubItemMovedPayload movePlacedItemEvent;
     
         public HubGrid Grid { get; private set; }
         private PlacementController controller;
         
-        public void OnEnable()
+        public void Start()
         {
             placeItemEvent.OnEventTriggered += controller.ActivatePlacement;
+            movePlacedItemEvent.OnEventTriggered += controller.ActivateMovePlacedItem;
         }
 
         public void OnDisable()
         {
             placeItemEvent.OnEventTriggered -= controller.ActivatePlacement;
+            movePlacedItemEvent.OnEventTriggered -= controller.ActivateMovePlacedItem;
             // GridSerializer.TestSave();
         }
     
@@ -41,9 +43,7 @@ namespace HubBuilding
         
         public void Update()
         {
-            controller.Run();
+            controller.RunPlacementLoop();
         }
-        
-        
     }    
 }

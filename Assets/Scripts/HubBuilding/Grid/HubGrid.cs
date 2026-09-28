@@ -48,6 +48,16 @@ namespace HubBuilding
             return true; 
         }
 
+        public SO_HubItem GetItemFromGrid(GridPosition pos)
+        {
+            if (IsActiveGridPosition(pos))
+            {
+                return ItemLookup.Instance.Get(grid[pos.x, pos.y].ItemId);
+            }
+
+            return null; 
+        }
+
         /* public void LoadGrid(GridSerializer.GridEntryList gridList)
         {
             foreach (var entry in gridList.entries)
