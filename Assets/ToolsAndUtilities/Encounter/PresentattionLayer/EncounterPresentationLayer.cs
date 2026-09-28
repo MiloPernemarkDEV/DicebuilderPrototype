@@ -7,7 +7,9 @@ namespace Encounter
     {
         public void SetEnabled(bool enabled);
         public void UpdateDice(RuntimeDieBag inHandDice);
-        public event System.Action<string> InHandDieSelected;
+
+        public void AnnouncePlayerInHandDieSelected();
+        public void AnnouncePlayerInHandDieHovered();
     }
 
     public sealed class EncounterPresentationLayer : MonoBehaviour

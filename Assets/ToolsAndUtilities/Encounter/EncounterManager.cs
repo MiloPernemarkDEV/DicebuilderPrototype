@@ -20,6 +20,8 @@ namespace Encounter
 
     public sealed class EncounterManager : MonoBehaviour
     {
+        private const int MAX_IN_HAND = 5;
+
         [SerializeField] private SO_SimpleStateMachine _stateMachineSO;
         private RuntimeSimpleStateMachine _stateMachine = null;
 
@@ -148,7 +150,7 @@ namespace Encounter
         // Properties and methods exposed
         // to the IStateBehaviors
         //================================
-        public int MaxInHand = 5;
+        public int MaxInHand => MAX_IN_HAND;
         public EncounterTestRig TestRig => _testRig;
         public RuntimeSimpleStateMachine StateMachine => _stateMachine;
 

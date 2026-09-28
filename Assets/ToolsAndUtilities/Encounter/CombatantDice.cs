@@ -41,6 +41,8 @@ namespace Encounter
         // ICombatantDice implementation
         public void DrawUp(int maxInHand)
         {
+            Debug.Log(maxInHand);
+
             int diceNeeded = maxInHand - _inHand.Dice.Count;
 
             if (diceNeeded <= 0)

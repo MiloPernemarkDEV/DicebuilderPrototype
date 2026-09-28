@@ -302,6 +302,7 @@ GameObject:
   - component: {fileID: 535177938}
   - component: {fileID: 535177937}
   - component: {fileID: 535177936}
+  - component: {fileID: 535177939}
   m_Layer: 5
   m_Name: Center
   m_TagString: Untagged
@@ -371,19 +372,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 535177937}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1906598844}
-        m_TargetAssemblyTypeName: Encounter.PlayerInHand_5Buttons, Assembly-CSharp
-        m_MethodName: HandleButtonPressed
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &535177937
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -422,6 +411,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 535177934}
   m_CullTransparentMesh: 1
+--- !u!114 &535177939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 535177934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 517bbc05ea9916e4dbb0300c1080e251, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInHandButton
+  _blankSprite: {fileID: 21300000, guid: 16b42ffed97366c459c60da8acbedffd, type: 3}
 --- !u!1 &753702311
 GameObject:
   m_ObjectHideFlags: 0
@@ -537,6 +539,7 @@ GameObject:
   - component: {fileID: 810937195}
   - component: {fileID: 810937194}
   - component: {fileID: 810937193}
+  - component: {fileID: 810937196}
   m_Layer: 5
   m_Name: Right
   m_TagString: Untagged
@@ -606,19 +609,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 810937194}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1906598844}
-        m_TargetAssemblyTypeName: Encounter.PlayerInHand_5Buttons, Assembly-CSharp
-        m_MethodName: HandleButtonPressed
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 4
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &810937194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -657,6 +648,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 810937191}
   m_CullTransparentMesh: 1
+--- !u!114 &810937196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 810937191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 517bbc05ea9916e4dbb0300c1080e251, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInHandButton
+  _blankSprite: {fileID: 21300000, guid: 16b42ffed97366c459c60da8acbedffd, type: 3}
 --- !u!1 &1005921343
 GameObject:
   m_ObjectHideFlags: 0
@@ -669,6 +673,7 @@ GameObject:
   - component: {fileID: 1005921347}
   - component: {fileID: 1005921346}
   - component: {fileID: 1005921345}
+  - component: {fileID: 1005921348}
   m_Layer: 5
   m_Name: CenterRight
   m_TagString: Untagged
@@ -738,19 +743,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1005921346}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1906598844}
-        m_TargetAssemblyTypeName: Encounter.PlayerInHand_5Buttons, Assembly-CSharp
-        m_MethodName: HandleButtonPressed
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1005921346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -789,6 +782,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1005921343}
   m_CullTransparentMesh: 1
+--- !u!114 &1005921348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1005921343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 517bbc05ea9916e4dbb0300c1080e251, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInHandButton
+  _blankSprite: {fileID: 21300000, guid: 16b42ffed97366c459c60da8acbedffd, type: 3}
 --- !u!1 &1599285192
 GameObject:
   m_ObjectHideFlags: 0
@@ -836,7 +842,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Encounter.EncounterManager
   _stateMachineSO: {fileID: 11400000, guid: 8c718280325e1254a9a682c95f3b36b8, type: 2}
-  MaxInHand: 5
 --- !u!114 &1599285196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -875,6 +880,7 @@ GameObject:
   - component: {fileID: 1766225056}
   - component: {fileID: 1766225055}
   - component: {fileID: 1766225054}
+  - component: {fileID: 1766225057}
   m_Layer: 5
   m_Name: Left
   m_TagString: Untagged
@@ -944,19 +950,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1766225055}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1906598844}
-        m_TargetAssemblyTypeName: Encounter.PlayerInHand_5Buttons, Assembly-CSharp
-        m_MethodName: HandleButtonPressed
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1766225055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -995,6 +989,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1766225052}
   m_CullTransparentMesh: 1
+--- !u!114 &1766225057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1766225052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 517bbc05ea9916e4dbb0300c1080e251, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInHandButton
+  _blankSprite: {fileID: 21300000, guid: 16b42ffed97366c459c60da8acbedffd, type: 3}
 --- !u!1 &1906598841
 GameObject:
   m_ObjectHideFlags: 0
@@ -1093,6 +1100,7 @@ GameObject:
   - component: {fileID: 1985460198}
   - component: {fileID: 1985460197}
   - component: {fileID: 1985460196}
+  - component: {fileID: 1985460199}
   m_Layer: 5
   m_Name: CenterLeft
   m_TagString: Untagged
@@ -1162,19 +1170,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1985460197}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1906598844}
-        m_TargetAssemblyTypeName: Encounter.PlayerInHand_5Buttons, Assembly-CSharp
-        m_MethodName: HandleButtonPressed
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1985460197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1213,6 +1209,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1985460194}
   m_CullTransparentMesh: 1
+--- !u!114 &1985460199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1985460194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 517bbc05ea9916e4dbb0300c1080e251, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInHandButton
+  _blankSprite: {fileID: 21300000, guid: 16b42ffed97366c459c60da8acbedffd, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
