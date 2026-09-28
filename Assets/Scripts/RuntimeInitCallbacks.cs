@@ -18,13 +18,13 @@ public static class RuntimeInitCallbacks
 #endif  
     } 
     
+#if UNITY_EDITOR
     /// <summary>
     /// Default Initializes static fields in editor only
     /// </summary>
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
     private static void InitializeStaticFields()
     {
-#if UNITY_EDITOR
         foreach (Type type in Assembly.GetExecutingAssembly().GetTypes())
         {
             BindingFlags flags = BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic;
@@ -42,9 +42,8 @@ public static class RuntimeInitCallbacks
                 ResetFields(field);
             }
         }
-#endif
     }
-
+    
     private static void ResetFields(FieldInfo field)
     {
         Type t = field.FieldType;
@@ -63,4 +62,6 @@ public static class RuntimeInitCallbacks
         else if (t == typeof(string)) prop.SetValue(null, string.Empty);
         else prop.SetValue(null, null);
     }
+    
+#endif
 }

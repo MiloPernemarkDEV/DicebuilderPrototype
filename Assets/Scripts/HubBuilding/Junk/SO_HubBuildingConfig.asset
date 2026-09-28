@@ -9,15 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d9c9d607e96482fb6ae93a72d8084c4, type: 3}
+  m_Script: {fileID: 11500000, guid: fcacf067001d1554b8fd46596aa26f2b, type: 3}
   m_Name: SO_HubBuildingConfig
   m_EditorClassIdentifier: Assembly-CSharp::HubBuilding.SO_HubBuildingConfig
   maxDistanceRaycast: 300
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  validPlacementColor: {r: 0.3278147, g: 1, b: 0, a: 0.23529412}
-  invalidPlacementColor: {r: 1, g: 0, b: 0, a: 0.23529412}
+  validPlacementColor: {r: 0.100182235, g: 1, b: 0, a: 0}
+  invalidPlacementColor: {r: 1, g: 0, b: 0, a: 0}
   gridWidth: 300
   gridHeight: 300
-  gridMaterial: {fileID: 2100000, guid: 9cee8783305c1764a94b144bc4cd83a5, type: 2}
+  gridMaterial: {fileID: 0}
