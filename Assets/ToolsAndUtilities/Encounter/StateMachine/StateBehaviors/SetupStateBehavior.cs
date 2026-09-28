@@ -48,6 +48,7 @@ namespace Encounter
                 //======
                 // TODO
                 //======
+                em.PresentationLayer.PlayerInHand.SetEnabled(false);
                 // put the location on screen
                 // put the player object on sceen
                 // put the enemy object(s) on screen

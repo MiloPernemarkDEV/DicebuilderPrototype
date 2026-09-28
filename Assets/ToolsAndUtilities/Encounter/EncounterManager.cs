@@ -5,6 +5,7 @@ using System.Collections.Generic;
 namespace Encounter
 {
     [RequireComponent(typeof(EncounterTestRig))]
+    [RequireComponent(typeof(EncounterPresentationLayer))]
     public static class EncounterStates
     {
         public const string SETUP       = "SETUP";
@@ -34,14 +35,14 @@ namespace Encounter
         private RuntimeEncounterSetup _encounterSetup;
         private RuntimeCombatant _playerCombatant = null;
         private List<RuntimeCombatant> _enemyCombatants = new List<RuntimeCombatant>();
-
         private Dictionary<string, ICombatantGameObject> _combatantObjects = new Dictionary<string, ICombatantGameObject>();
-
+        private EncounterPresentationLayer _presentationLayer = null;
 
 
         private void Awake()
         {
             _testRig = GetComponent<EncounterTestRig>();
+            _presentationLayer = GetComponent<EncounterPresentationLayer>();
 
             if ( _stateMachineSO != null)
             {
@@ -156,6 +157,7 @@ namespace Encounter
         public RuntimeCombatant PlayerCombatant { get { return _playerCombatant; } set { _playerCombatant = value; } }
         public List<RuntimeCombatant> EnemyCombatants {  get { return _enemyCombatants; } }
         public Dictionary<string, ICombatantGameObject> CombatantObjects => _combatantObjects;
+        public EncounterPresentationLayer PresentationLayer => _presentationLayer;
         public void InstantiateCombatantObject(string id, GameObject prefab)
         {
             GameObject go = Instantiate(prefab);
