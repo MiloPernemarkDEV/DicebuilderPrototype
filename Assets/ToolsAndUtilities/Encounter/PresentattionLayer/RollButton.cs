@@ -19,7 +19,8 @@ namespace Encounter
 
         public void OnPointerClick(PointerEventData pData)
         {
-            //...
+            if (!GetComponent<Button>().enabled) return;
+            _rollCommandEvent.TriggerEvent();
         }
 
         public void SetRollCommandEnabled(bool rollEnabled)
@@ -27,8 +28,6 @@ namespace Encounter
             GetComponent<Button>().enabled = rollEnabled;
             GetComponent<Image>().enabled = rollEnabled;
             _buttonText.text = rollEnabled ? "ROLL" : "";
-
-
         }
 
     }

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 164a5f0d78b8ed045830134a0f02fc89, type: 3}
   m_Name: PlayerDeadState
   m_EditorClassIdentifier: Assembly-CSharp::SimpleStateMachine.SO_SimpleState
-  _stateString: 
+  _stateString: PLAYER_DEAD
   _stateDescription: What happens during this state
   _toStates: []
