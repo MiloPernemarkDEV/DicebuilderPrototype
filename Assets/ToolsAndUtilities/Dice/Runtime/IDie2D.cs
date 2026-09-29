@@ -23,6 +23,8 @@ namespace Encounter
     {
         public void SetRuntimeDie(RuntimeDie runtimeDie);
         public void Roll();
+
+        public void CheatRoll(int resultIdx);
         public bool GetIsRolling();
 
         public DieFaceData GetCurrentDieFaceData();

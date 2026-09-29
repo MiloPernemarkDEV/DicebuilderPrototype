@@ -1,6 +1,8 @@
-using UnityEngine;
+using EventChannels;
+using DiceTools;
 using SimpleStateMachine;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Encounter
 {
@@ -21,6 +23,9 @@ namespace Encounter
     public sealed class EncounterManager : MonoBehaviour
     {
         [SerializeField] private SO_SimpleStateMachine _stateMachineSO;
+        [SerializeField] private SO_EventRuntimeDiePayload _dieSelectedEvent;
+        [SerializeField] private SO_EventRuntimeDiePayload _dieUnselectedEvent;
+        [SerializeField] private SO_EventIntPayload _selectedDiceUpdatedEvent;
         private RuntimeSimpleStateMachine _stateMachine = null;
 
         private IStateBehaviors _setupBehaviors;
@@ -64,12 +69,16 @@ namespace Encounter
         {
             _stateMachine.StateEntered += HandleStateEntered;
             _stateMachine.StateExited  += HandleStateExited;
+            _dieSelectedEvent.OnEventTriggered += HandleDieSelected;
+            _dieUnselectedEvent.OnEventTriggered += HandleDieUnselected;
         }
 
         private void OnDisable()
         {
             _stateMachine.StateEntered -= HandleStateEntered;
             _stateMachine.StateExited  -= HandleStateExited;
+            _dieSelectedEvent.OnEventTriggered -= HandleDieSelected;
+            _dieUnselectedEvent.OnEventTriggered -= HandleDieUnselected;
         }
 
         private void Start()
@@ -144,13 +153,28 @@ namespace Encounter
             }
         }
 
+        private void HandleDieSelected(RuntimeDie d)
+        {
+            if (_stateMachine.CurrentStateName != EncounterStates.SELECT) return;
+            SelectStateBehavior selectBehaviors = _selectBehaviors as SelectStateBehavior;
+            selectBehaviors.HandleDieSelected(d, this);
+
+        }
+        private void HandleDieUnselected(RuntimeDie d)
+        {
+            if (_stateMachine.CurrentStateName != EncounterStates.SELECT) return;
+            SelectStateBehavior selectBehaviors = _selectBehaviors as SelectStateBehavior;
+            selectBehaviors.HandleDieUnselected(d, this);
+        }
+
         //================================
         // Properties and methods exposed
         // to the IStateBehaviors
         //================================
-        public int MaxInHand = 5;
+        
         public EncounterTestRig TestRig => _testRig;
         public RuntimeSimpleStateMachine StateMachine => _stateMachine;
+        public SO_EventIntPayload SelectedDiceUpdatedEvent => _selectedDiceUpdatedEvent;
 
         public RuntimeEncounterSetup EncounterSetup { get {  return _encounterSetup; } set { _encounterSetup = value; }  }
 
