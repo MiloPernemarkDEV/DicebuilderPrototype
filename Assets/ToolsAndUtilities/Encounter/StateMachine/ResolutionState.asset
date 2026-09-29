@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 164a5f0d78b8ed045830134a0f02fc89, type: 3}
   m_Name: ResolutionState
   m_EditorClassIdentifier: Assembly-CSharp::SimpleStateMachine.SO_SimpleState
-  _stateString: 
+  _stateString: RESOLUTION
   _stateDescription: What happens during this state
   _toStates:
   - {fileID: 11400000, guid: f8ffdef179daa6e4ba5f24bf0ead2a0d, type: 2}

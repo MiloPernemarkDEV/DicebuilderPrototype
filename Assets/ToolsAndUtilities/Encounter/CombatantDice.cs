@@ -1,16 +1,11 @@
 using DiceTools;
-using UnityRandom = UnityEngine.Random;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityRandom = UnityEngine.Random;
 
 namespace Encounter
 {
-
-    /*
-    public interface ICombatantDice
-    {
-        public void DrawUp(int maxInHand);
-    }
-    */
 
     public class CombatantDice
     {
@@ -27,6 +22,15 @@ namespace Encounter
         public RuntimeDieBag InPlay => _inPlay;
         public RuntimeDieBag DiscardBag => _discardBag;
 
+
+        private void RecycleDiscards()
+        {
+            Debug.Log("Recycling discards...");
+            DrawBag.Dice.AddRange(DiscardBag.Dice);
+            DiscardBag.Dice.Clear();
+        }
+
+
         // Public constructor
         public CombatantDice(RuntimeDieBag drawBag)
         {
@@ -36,9 +40,6 @@ namespace Encounter
             _discardBag = new RuntimeDieBag();
         }
 
-        
-
-        // ICombatantDice implementation
         public void DrawUp(int maxInHand)
         {
             Debug.Log(maxInHand);
@@ -63,12 +64,28 @@ namespace Encounter
             }
         }
 
-        // ...
-        private void RecycleDiscards()
+        public void InHandToInPlay(List<string> dieIDs)
         {
-            // ...
+            if (dieIDs == null || dieIDs.Count <= 0) return;
+
+            // Convert incoming IDs to a HashSet for O(1) lookups
+            HashSet<string> idSet = new HashSet<string>(dieIDs);
+
+            // 1. Find all matching dice in inHand
+            List<RuntimeDie> matchingDice = _inHand.Dice
+                .Where(die => die != null && idSet.Contains(die.RuntimeID))
+                .ToList();
+
+            if (matchingDice.Count == 0) return;
+
+            // 2. Add matching dice to inPlay
+            _inPlay.Dice.AddRange(matchingDice);
+
+            // 3. Remove matching dice from inHand
+            _inHand.Dice.RemoveAll(die => die != null && idSet.Contains(die.RuntimeID));
         }
 
+        //...
     }
 }
 

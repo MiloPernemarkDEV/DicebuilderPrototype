@@ -1769,9 +1769,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Encounter.EncounterManager
   _stateMachineSO: {fileID: 11400000, guid: 8c718280325e1254a9a682c95f3b36b8, type: 2}
+  _aIDiceSelectorSO: {fileID: 11400000, guid: b4930ddf7a9bbd64f8dcd5b8da52dccf, type: 2}
   _dieSelectedEvent: {fileID: 11400000, guid: be776ee8d523ba64d845df7a0a939858, type: 2}
   _dieUnselectedEvent: {fileID: 11400000, guid: 0f2abcd861f12e940bc8cc340f3b12da, type: 2}
   _selectedDiceUpdatedEvent: {fileID: 11400000, guid: 9278cd7276bfea94588ee7c3deddd677, type: 2}
+  _rollCommandEvent: {fileID: 11400000, guid: c90ca0630d96c8f4ab02c172b1071e3f, type: 2}
 --- !u!114 &1599285196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1799,7 +1801,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EncounterPresentationLayer
   _playerInHandObject: {fileID: 1906598841}
   _rollCommandObject: {fileID: 674794081}
-  _rollCommandEvent: {fileID: 11400000, guid: c90ca0630d96c8f4ab02c172b1071e3f, type: 2}
 --- !u!1 &1766225052
 GameObject:
   m_ObjectHideFlags: 0

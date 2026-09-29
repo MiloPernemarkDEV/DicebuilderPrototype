@@ -24,7 +24,7 @@ namespace Encounter
     {
         [SerializeField] private GameObject _playerInHandObject;
         [SerializeField] private GameObject _rollCommandObject;
-        [SerializeField] private SO_EventEmptyPayload _rollCommandEvent;
+        //[SerializeField] private SO_EventEmptyPayload _rollCommandEvent;
 
 
         private IPlayerInHand _playerInHand;
@@ -38,11 +38,11 @@ namespace Encounter
 
         private void OnEnable()
         {
-            _rollCommandEvent.OnEventTriggered += HandleRollCommandEvent;
+            //_rollCommandEvent.OnEventTriggered += HandleRollCommandEvent;
         }
         private void OnDisable()
         {
-            _rollCommandEvent.OnEventTriggered -= HandleRollCommandEvent;
+            //_rollCommandEvent.OnEventTriggered -= HandleRollCommandEvent;
         }
 
         private void Start()
@@ -50,10 +50,7 @@ namespace Encounter
             _rollCommandInterface.SetRollCommandEnabled(false);
         }
 
-        private void HandleRollCommandEvent()
-        {
-            //...
-        }
+        
 
         //=====
         // API

@@ -7,7 +7,9 @@ namespace Encounter
     {
         public void DoStateEnteredBehavior(EncounterManager em)
         {
+            Debug.Log("### RollingStateBehavior: Hello");
 
+            //...
         }
         public void DoStateExitedBehavior(EncounterManager em)
         {
