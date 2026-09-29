@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47e8f01131354dbcb9c413f386bcbf4d, type: 3}
-  m_Name: SO_MovePlacedItemEvent
-  m_EditorClassIdentifier: Assembly-CSharp::EventChannels.SO_EventHubItemMovedPayload
+  m_Script: {fileID: 11500000, guid: 668e1ca0860f46c4eb07395518d2f13e, type: 3}
+  m_Name: ItemPlacedEvent
+  m_EditorClassIdentifier: Assembly-CSharp::EventChannels.SO_EventSO_HubItemPayload

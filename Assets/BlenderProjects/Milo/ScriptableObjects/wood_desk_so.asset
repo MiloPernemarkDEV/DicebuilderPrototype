@@ -18,3 +18,4 @@ MonoBehaviour:
   tileCount: {x: 3, y: 3}
   hasSlots: 0
   rotationOffset: {x: 0, y: 90, z: 0}
+  itemMaterial: {fileID: 2100000, guid: 0d1a8bac1615bf34abdd3dff12112d20, type: 2}

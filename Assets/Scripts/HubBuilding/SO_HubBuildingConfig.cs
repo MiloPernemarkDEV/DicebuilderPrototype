@@ -10,7 +10,8 @@ namespace HubBuilding
         [SerializeField] private LayerMask groundLayerMask;
         [SerializeField] private Color validPlacementColor; 
         [SerializeField] private Color invalidPlacementColor;
-        [SerializeField] private float movePlacedItemHoldTime; 
+        [SerializeField] private float movePlacedItemHoldTime;
+        [SerializeField] private Material previewMaterial;
         
         [Header("Grid Settings")]
         [SerializeField] private int gridWidth; 
@@ -23,6 +24,7 @@ namespace HubBuilding
         public int GridWidth => gridWidth;
         public int GridHeight => gridHeight;
         public float  MovePlacedItemHoldTime => movePlacedItemHoldTime;
+        public Material PreviewMaterial => previewMaterial;
         // public Material  GridMaterial => gridMaterial;
     }
 }

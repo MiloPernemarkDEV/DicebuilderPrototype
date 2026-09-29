@@ -86,7 +86,7 @@ namespace HubBuilding
             if (!previewPrefab)
             {
                 previewPrefab = Object.Instantiate(previewObject, footprintCenter, targetRotation);
-                previewMat = new PreviewMaterial(previewPrefab);
+                previewMat = new PreviewMaterial(previewPrefab, config.PreviewMaterial);
             }
 
             footprintCenter = AdjustPivot(footprintCenter, hitInfo);
@@ -103,9 +103,8 @@ namespace HubBuilding
                 currentItem.TileCount), 
                 footprintCenter
             );
-            
-            ResetState();
             Object.Destroy(previewPrefab);
+            ResetState();
         }
 
         private void MovePlacedItem(GridPosition oldPos)

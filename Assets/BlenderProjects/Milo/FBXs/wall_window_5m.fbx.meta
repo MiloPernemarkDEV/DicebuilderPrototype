@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 70e09d9897b91004a8f9ca40d523cfb8
+guid: 63e51dc9b1febdd45b6dd7d0eb7501dd
 ModelImporter:
   serializedVersion: 24600
   internalIDToNameTable: []
@@ -7,8 +7,13 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Blatt
-    second: {fileID: 2100000, guid: f87f9515fa0ecaf4b81c7398f641fa3c, type: 2}
+      name: Material
+    second: {fileID: 2100000, guid: ae5bdee2ad5986848911550e68138059, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.002
+    second: {fileID: 2100000, guid: 8368f2495f6a6b94abc85ec81542a74a, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
