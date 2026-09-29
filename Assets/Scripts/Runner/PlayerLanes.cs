@@ -74,6 +74,12 @@ public class PlayerLanes : MonoBehaviour
         currentLane = 1;
     }
 
+    // Starts running again in the same direction (used when leaving the shop)
+    public void Resume()
+    {
+        IsRunning = true;
+    }
+
     // Starts running again in a new direction from a point (used after choosing a junction path)
     public void Turn(Vector3 newCenter, Vector2 newHeading)
     {
