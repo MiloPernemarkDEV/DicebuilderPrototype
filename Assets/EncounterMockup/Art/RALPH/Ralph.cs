@@ -18,8 +18,8 @@ namespace EncounterMockup
 
         private void Start()
         {
-            _ralphAnimator.Play("RALPH_ATTACK");
-            Debug.Log(_ralphSM.CurrentStateName);
+            //_ralphAnimator.Play("RALPH_ATTACK");
+            //Debug.Log(_ralphSM.CurrentStateName);
 
         }
 

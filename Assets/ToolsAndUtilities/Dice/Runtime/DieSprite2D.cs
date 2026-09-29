@@ -71,7 +71,7 @@ namespace Encounter
 
         private void TweakDieSprite()
         {
-            Transform2DTweaksStruct tweak = MiscTransformTools.GetTransformTweak2D(0.5f, 10.0f);
+            Transform2DTweaksStruct tweak = MiscTransformTools.GetTransformTweak2D(0.2f, 3.0f);
             transform.position = tweak.PosTweak + _startPos;
             transform.rotation = Quaternion.Euler(0f, 0f, tweak.AngleTweak.z);
         }
@@ -91,7 +91,7 @@ namespace Encounter
             if ( _runtimeDie == null) return;
             if (_isRolling) return;
 
-            _spinner.Spin(gameObject, 4f, 50);
+            _spinner.Spin(gameObject, .75f, 12);
         }
 
         public void CheatRoll(int resultIdx)
