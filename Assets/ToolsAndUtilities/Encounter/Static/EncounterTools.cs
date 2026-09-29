@@ -2,6 +2,13 @@ using UnityEngine;
 
 namespace Encounter
 {
+
+    public static class EncounterConstants
+    {
+        public const int MAX_IN_HAND = 5;
+        public const int MAX_SELECTED = 3;
+    }
+
     public static class EncounterTools
     {
         public static string DebugCombatant(EncounterManager em, string combatantID, bool isPlayer)

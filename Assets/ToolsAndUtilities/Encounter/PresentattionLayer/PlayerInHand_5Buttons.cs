@@ -7,70 +7,74 @@ namespace Encounter
 {
     public class PlayerInHand_5Buttons : MonoBehaviour, IPlayerInHand
     {
-        [SerializeField] List<Button> _diceButtons;
+        [SerializeField] private List<Button> _diceButtons;
+        private List<PlayerInHandButton> _playerInHandButtons = new List<PlayerInHandButton>();
+        
         private List<RuntimeDie> _inHandDice = new List<RuntimeDie>();
+
+        private void Awake()
+        {
+            _playerInHandButtons.Clear();
+            foreach (Button butt in _diceButtons)
+            {
+                _playerInHandButtons.Add(butt.gameObject.GetComponent<PlayerInHandButton>());
+            }
+        }
 
         private void OnEnable()
         {
-            /*
-            for (int i = 0; i < _diceButtons.Count; i++)
-            {
-                _diceButtons[i].onClick.AddListener(() => HandleButtonPressed(i));
-            }
-            */
-            // ^^this doesn't work like I think it does. I hooked up the
-            //     buttons in the editor instead for now
+            //...
         }
         private void OnDisable()
         {
-            /*
-            foreach (Button butt in _diceButtons)
-            {
-                butt.onClick.RemoveAllListeners();
-            }
-            */
+            //...
         }
 
-        public void HandleButtonPressed(int buttonIdx)
+        private void ClearAllButtons()
         {
-            Button thisButton = _diceButtons[buttonIdx];
-            RuntimeDie thisDie = _inHandDice[buttonIdx];
-            Debug.Log(thisDie.DisplayName);
-            Debug.Log(thisDie.RuntimeID);
-        }
-
-        private void DisableAllButtons()
-        {
-            foreach(Button butt in _diceButtons)
+            foreach(PlayerInHandButton butt in _playerInHandButtons)
             {
-                butt.interactable = false;
+                butt.ClearDieData();
             }
         }
+
+        
 
         // IPlayerInHand implementation
-        public event System.Action<string> InHandDieSelected;
+        public void AnnouncePlayerInHandDieSelected()
+        {
+            
+        }
+        public void AnnouncePlayerInHandDieHovered()
+        {
+
+        }
         public void SetEnabled(bool enabled)
         {
             gameObject.SetActive(enabled);
         }
 
+        public void SetInteractable(bool interactable)
+        {
+            foreach (PlayerInHandButton butt in _playerInHandButtons)
+            {
+                butt.GetComponent<Button>().interactable = interactable;
+            }
+        }
+
         public void UpdateDice(RuntimeDieBag inHandDice)
         {
             _inHandDice.Clear();
-            DisableAllButtons();
+            ClearAllButtons();
             foreach (RuntimeDie d in inHandDice.Dice)
             {
                 _inHandDice.Add(d);
             }
             for (int i = 0; i < _inHandDice.Count; i++)
             {
-                Button butt = _diceButtons[i];
-                Image buttImage = butt.GetComponent<Image>();
-                buttImage.sprite = _inHandDice[i].GetCurrentFace().ImageSprite;
-                butt.interactable = true;
+                PlayerInHandButton butt = _playerInHandButtons[i];
+                butt.SetDieData(_inHandDice[i]);
             }
-            
-
         }
     }
 }
