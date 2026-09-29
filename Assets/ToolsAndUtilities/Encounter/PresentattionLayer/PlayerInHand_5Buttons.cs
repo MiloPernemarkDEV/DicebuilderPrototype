@@ -30,13 +30,15 @@ namespace Encounter
             //...
         }
 
-        private void DisableAllButtons()
+        private void ClearAllButtons()
         {
             foreach(PlayerInHandButton butt in _playerInHandButtons)
             {
                 butt.ClearDieData();
             }
         }
+
+        
 
         // IPlayerInHand implementation
         public void AnnouncePlayerInHandDieSelected()
@@ -52,10 +54,18 @@ namespace Encounter
             gameObject.SetActive(enabled);
         }
 
+        public void SetInteractable(bool interactable)
+        {
+            foreach (PlayerInHandButton butt in _playerInHandButtons)
+            {
+                butt.GetComponent<Button>().interactable = interactable;
+            }
+        }
+
         public void UpdateDice(RuntimeDieBag inHandDice)
         {
             _inHandDice.Clear();
-            DisableAllButtons();
+            ClearAllButtons();
             foreach (RuntimeDie d in inHandDice.Dice)
             {
                 _inHandDice.Add(d);

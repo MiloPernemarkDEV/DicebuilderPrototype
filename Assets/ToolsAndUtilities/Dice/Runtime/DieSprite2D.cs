@@ -94,6 +94,11 @@ namespace Encounter
             _spinner.Spin(gameObject, 4f, 50);
         }
 
+        public void CheatRoll(int resultIdx)
+        {
+            // ...
+        }
+
         public bool GetIsRolling()
         {
             return _isRolling;
