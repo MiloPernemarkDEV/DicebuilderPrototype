@@ -55,7 +55,7 @@ public class RunDirector : MonoBehaviour
 
     public (StopType type, int pieces) GetFirstStop()
     {
-        return (StopType.Junction, piecesToFirstJunction);
+        return (StopType.JUNCTION, piecesToFirstJunction);
     }
 
     public (StopType type, int pieces) GetStopAfterJunction(bool wentRight)
@@ -65,16 +65,16 @@ public class RunDirector : MonoBehaviour
         // Junction 1: both ways just continue to Junction 2
         if (junctionsPassed == 1)
         {
-            return (StopType.Junction, piecesToSecondJunction);
+            return (StopType.JUNCTION, piecesToSecondJunction);
         }
 
         // Junction 2 and every junction after: Right = Shop, Left = Boss
-        return wentRight ? (StopType.Shop, piecesToShop) : (StopType.Boss, piecesToBoss);
+        return wentRight ? (StopType.SHOP, piecesToShop) : (StopType.BOSS, piecesToBoss);
     }
 
     public (StopType type, int pieces) GetStopAfterShop()
     {
-        return (StopType.Junction, piecesAfterShop);
+        return (StopType.JUNCTION, piecesAfterShop);
     }
 
     // ---------- Called by the PathGenerator ----------

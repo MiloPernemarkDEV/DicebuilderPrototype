@@ -26,6 +26,7 @@ public class PlayerLanes : MonoBehaviour
 
     private int currentLane = 1;
     private float laneOffset;
+    private CoinPopupSpawner coinPopup;
 
     private readonly Dictionary<DiceColor, int> diceCounts = new Dictionary<DiceColor, int>
     {
@@ -34,6 +35,12 @@ public class PlayerLanes : MonoBehaviour
         { DiceColor.Green, 0 },
         { DiceColor.Yellow, 0 },
     };
+
+    private void Awake()
+    {
+        // Optional: shows "+1" over the player's head when a coin is collected
+        coinPopup = GetComponent<CoinPopupSpawner>();
+    }
 
     private void Start()
     {
@@ -112,7 +119,7 @@ public class PlayerLanes : MonoBehaviour
     public void CollectCoin()
     {
         Coins++;
-        Debug.Log($"Coins: {Coins}");
+        if (coinPopup != null) coinPopup.Spawn();
     }
 
     public int GetCount(DiceColor color)

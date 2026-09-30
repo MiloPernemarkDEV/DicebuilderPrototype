@@ -19,6 +19,9 @@ public class CameraFollow : MonoBehaviour
     [Tooltip("How quickly the camera slides and zooms between running and junction views")]
     [SerializeField] private float transitionSpeed = 4f;
 
+    // The extra diagonal rotation (PathGenerator uses this to place kitchen props)
+    public float ViewAngle => viewAngle;
+
     private Camera cam;
     private float runningZoom;
     private float currentLookAhead;
