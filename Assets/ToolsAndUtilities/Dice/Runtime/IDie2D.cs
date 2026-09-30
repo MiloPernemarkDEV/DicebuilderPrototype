@@ -28,6 +28,7 @@ namespace Encounter
         public bool GetIsRolling();
 
         public DieFaceData GetCurrentDieFaceData();
+        public string GetDieID();
 
         public event System.Action RollingFinished;
     }

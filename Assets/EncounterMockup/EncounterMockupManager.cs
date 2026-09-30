@@ -10,9 +10,11 @@ namespace EncounterMockup
     public class EncounterMockupManager : MonoBehaviour
     {
         [SerializeField] private SO_EventEmptyPayload _rollCommandEvent;
+        [SerializeField] private SO_EventEmptyPayload _opponentRollCommandEvent;
         [SerializeField] private GameObject _playerDiceHolder;
         [SerializeField] private GameObject _opponentDiceHolder;
         [SerializeField] private SO_DieBag _diceBagSO;
+        [SerializeField] private SO_EventEmptyPayload _finishedEvent;
 
         private RuntimeDieBag _runtimeDieBag = null;
 
@@ -23,6 +25,10 @@ namespace EncounterMockup
 
         private bool _diceAreRolling = false;
 
+        bool aftermathTriggered = false;
+
+        private bool triggered = false;
+
         private void Awake()
         {
             _runtimeDieBag = _diceBagSO.GetRuntimeDieBag();
@@ -31,12 +37,14 @@ namespace EncounterMockup
         private void OnEnable()
         {
             _rollCommandEvent.OnEventTriggered += HandleRollCommandEvent;
+            _finishedEvent.OnEventTriggered += HandlePlayerRollingFinished;
             SetUpDice();
             ConnectRollingFinishedEvents();
         }
         private void OnDisable()
         {
             _rollCommandEvent.OnEventTriggered -= HandleRollCommandEvent;
+            _finishedEvent.OnEventTriggered -= HandlePlayerRollingFinished;
             DisconnectRollingFinishedEvents();
         }
 
@@ -86,15 +94,24 @@ namespace EncounterMockup
 
         private void SetUpDice()
         {
-            foreach (Transform child in _playerDiceHolder.transform)
-            {
-                _playerDice.Add(child.GetComponent<IDie2D>());
-                _playerMockupDice.Add(child.GetComponent<MockupDie2D>());
-            }
+            
             foreach (Transform child in _opponentDiceHolder.transform)
             {
-                _opponentDice.Add(child.GetComponent<IDie2D>());
-                _opponentMockupDice.Add(child.GetComponent<MockupDie2D>());
+                if (child.gameObject != _opponentDiceHolder.gameObject)
+                {
+                    _opponentDice.Add(child.GetComponent<IDie2D>());
+                    _opponentMockupDice.Add(child.GetComponent<MockupDie2D>());
+                }
+            }
+
+            foreach (Transform child in _playerDiceHolder.transform)
+            {
+                if (child.gameObject != _playerDiceHolder.gameObject)
+                {
+                    _playerDice.Add(child.GetComponent<IDie2D>());
+                    _playerMockupDice.Add(child.GetComponent<MockupDie2D>());
+                }
+
             }
 
             List<RuntimeDie> _playerDiceData = GetThreeRandomDiceFromBag();
@@ -120,10 +137,11 @@ namespace EncounterMockup
             for (int i= 0; i < 3; i++)
             {
                 _playerDice[i].Roll();
-                _opponentDice[i].Roll();
-                _playerMockupDice[i].DoRollingBehavior(.75f);
-                _opponentMockupDice[i].DoRollingBehavior(.75f);
+                _playerMockupDice[i].DoRollingBehavior(.75f, true);
+                //_opponentDice[i].Roll();
+                //_opponentMockupDice[i].DoRollingBehavior(0.75f);
             }
+            //StartCoroutine(WaitThenTriggerOpponentRoll(1.5f));
         }
 
         private void HandleRollCommandEvent()
@@ -135,16 +153,65 @@ namespace EncounterMockup
 
         private void HandleRollingFinished()
         {
-            // return early if anything is still rolling
+            if (aftermathTriggered) return;
+            aftermathTriggered = true;
+            StartCoroutine(WaitThenTriggerAftermath(3.0f));
+        }
+
+        private System.Collections.IEnumerator WaitThenTriggerOpponentRoll(float wait)
+        {
+            yield return new WaitForSecondsRealtime(wait);
+
             for (int i = 0; i < 3; i++)
             {
-                if (_playerDice[i].GetIsRolling()) return;
-                if (_opponentDice[i].GetIsRolling()) return;
+                _opponentDice[i].Roll();
+                _opponentMockupDice[i].DoRollingBehavior(.75f, false);
+                //_playerDice[i].Roll();
+                //_playerMockupDice[i].DoRollingBehavior(0.75f);
+            }
+            _opponentRollCommandEvent.TriggerEvent();
+        }
+
+        private void HandlePlayerRollingFinished()
+        {
+            if (triggered) return;
+            triggered = true;
+
+            for (int i = 0; i < 3; i++)
+            {
+                _opponentDice[i].Roll();
+                _opponentMockupDice[i].DoRollingBehavior(.75f, false);
+                //_playerDice[i].Roll();
+                //_playerMockupDice[i].DoRollingBehavior(0.75f);
+            }
+            _opponentRollCommandEvent.TriggerEvent();
+        }
+
+        private System.Collections.IEnumerator WaitThenTriggerAftermath(float wait)
+        {
+            yield return new WaitForSecondsRealtime(wait);
+
+            List<GameObject> playerDice = new List<GameObject>();
+            List<GameObject> oppoDice = new List<GameObject>();
+
+            
+            foreach(Transform child in _opponentDiceHolder.transform)
+            {
+                if(child.gameObject != _opponentDiceHolder.gameObject)
+                {
+                    oppoDice.Add(child.gameObject);
+                }
             }
 
-            Debug.Log("All dice have stopped rolling");
+            foreach (Transform child in _playerDiceHolder.transform)
+            {
+                if (child.gameObject != _playerDiceHolder.gameObject)
+                {
+                    playerDice.Add(child.gameObject);
+                }
+            }
 
-
+            GetComponent<AftermathController>().DoAftermath(playerDice, oppoDice);
         }
 
 

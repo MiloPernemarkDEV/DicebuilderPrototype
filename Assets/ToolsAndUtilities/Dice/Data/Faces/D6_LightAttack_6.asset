@@ -15,4 +15,4 @@ MonoBehaviour:
   _integerValue: 6
   _tagStrings:
   - ACTION.ATTACK.LIGHT
-  _imageSprite: {fileID: 21300000, guid: 5a6444c76307cda499cc47249e59d762, type: 3}
+  _imageSprite: {fileID: 21300000, guid: 419e63509e4e6bd46a90754e731eca1b, type: 3}

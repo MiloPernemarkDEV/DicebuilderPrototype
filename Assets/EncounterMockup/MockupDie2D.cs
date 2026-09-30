@@ -1,7 +1,7 @@
+using EventChannels;
 using System;
 using Tweens;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace EncounterMockup
 {
@@ -10,6 +10,9 @@ namespace EncounterMockup
         [SerializeField] private float _startScale = 0.025f;
         [SerializeField] private float _maxScale = 0.6f;
         [SerializeField] private float _landScale = 0.4f;
+        [SerializeField] private SO_EventEmptyPayload _finishedEvent;
+
+        private bool _isPlayer = false;
 
 
         private void Start()
@@ -39,6 +42,28 @@ namespace EncounterMockup
 
             sizeUpTween.StartTween();
         }
+
+        private void DoSpin(float durationSeconds)
+        {
+            Tween spinTween = TweenService.GetFloatTween(
+                gameObject,
+                0f,
+                720f,
+                durationSeconds,
+                EnumTweenEase.QUAD,
+                EnumTweenDirection.OUT
+                );
+            spinTween.OnValueUpdated += (value) =>
+            {
+                //float currentRotZ = transform.rotation.eulerAngles.z;
+                float nextZ = value.x;
+                transform.rotation = Quaternion.Euler(0, 0, nextZ);
+
+            };
+            spinTween.StartTween();
+
+        }
+
         private void DoSizeDown(float durationSeconds)
         {
             Tween sizeDownTween = TweenService.GetFloatTween(
@@ -56,14 +81,19 @@ namespace EncounterMockup
             };
             sizeDownTween.OnFinished += () =>
             {
-                //...
+                if (_isPlayer)
+                {
+                    _finishedEvent.TriggerEvent();
+                }
             };
             sizeDownTween.StartTween();
         }
 
-        public void DoRollingBehavior(float durationSeconds)
+        public void DoRollingBehavior(float durationSeconds, bool isPlayer)
         {
+            _isPlayer = isPlayer;
             GetComponent<SpriteRenderer>().enabled = true;
+            DoSpin(durationSeconds);
             DoSizeUp(durationSeconds);
         }
     }

@@ -111,6 +111,11 @@ namespace Encounter
             List<string> tagStrings = face.TagStrings;
             return new DieFaceData(intValue, tagStrings);
         }
+
+        public string GetDieID()
+        {
+            return _runtimeDie.RuntimeID;
+        }
     }
 }
 
