@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 363b66144e61248468534ef890c6f453, type: 3}
+  m_Name: MockupDieBag
+  m_EditorClassIdentifier: Assembly-CSharp::DiceTools.SO_DieBag
+  _displayName: 
+  _collectionType: 0
+  _dice:
+  - {fileID: 11400000, guid: 7f4de2fdad5363846b5006b5bb6e8b45, type: 2}
+  - {fileID: 11400000, guid: d2fe1497bebc010498da51a0476ece18, type: 2}
+  - {fileID: 11400000, guid: cba0038b83f016048abd99694d6444e1, type: 2}
+  - {fileID: 11400000, guid: d90d65ed2371b284e829b2ac6c7994c5, type: 2}
+  - {fileID: 11400000, guid: 556d91d4a6b34534f959281cd06a17c4, type: 2}
+  - {fileID: 11400000, guid: aea1c5266b31d8d4eade994dbc231b32, type: 2}

@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58477d9c5dc0a8d448d67542adce3e4b, type: 3}
+  m_Script: {fileID: 11500000, guid: 0056deca494094646936a54316d6c0f3, type: 3}
   m_Name: DefaultEncounter
   m_EditorClassIdentifier: Assembly-CSharp::Encounter.SO_EncounterSetup
-  _playerSetup: {fileID: 11400000, guid: d9c4897eabc9e384899c9fa747139a29, type: 2}
+  _playerSetup: {fileID: 11400000, guid: 031e5207c49e36e4b95ef9bbdf7ed279, type: 2}
   _enemySetups:
-  - {fileID: 11400000, guid: afe0de7273a07974b9bcd2ce2baabd14, type: 2}
-  _locationSetup: {fileID: 11400000, guid: 780f70b88b46dd64180c23d657a5fd7e, type: 2}
+  - {fileID: 11400000, guid: e6305c826eda45549ac7676947f19901, type: 2}
+  _locationSetup: {fileID: 11400000, guid: 99fd6dcc8afa1604f8b60a183c50c537, type: 2}

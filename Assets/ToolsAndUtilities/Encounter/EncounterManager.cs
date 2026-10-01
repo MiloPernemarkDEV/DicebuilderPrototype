@@ -1,10 +1,13 @@
-using UnityEngine;
+using EventChannels;
+using DiceTools;
 using SimpleStateMachine;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Encounter
 {
     [RequireComponent(typeof(EncounterTestRig))]
+    [RequireComponent(typeof(EncounterPresentationLayer))]
     public static class EncounterStates
     {
         public const string SETUP       = "SETUP";
@@ -19,7 +22,13 @@ namespace Encounter
 
     public sealed class EncounterManager : MonoBehaviour
     {
-        [SerializeField] private SO_SimpleStateMachine _stateMachineSO;
+        [SerializeField] private SO_SimpleStateMachine     _stateMachineSO;
+        [SerializeField] private SO_AIDiceSelector         _aIDiceSelectorSO;
+        [SerializeField] private SO_EventRuntimeDiePayload _dieSelectedEvent;
+        [SerializeField] private SO_EventRuntimeDiePayload _dieUnselectedEvent;
+        [SerializeField] private SO_EventIntPayload        _selectedDiceUpdatedEvent;
+        [SerializeField] private SO_EventEmptyPayload      _rollCommandEvent;
+        
         private RuntimeSimpleStateMachine _stateMachine = null;
 
         private IStateBehaviors _setupBehaviors;
@@ -30,27 +39,33 @@ namespace Encounter
         private IStateBehaviors _aftermathBehaviors;
         private IStateBehaviors _playerDeadBehaviors;
         private IStateBehaviors _playerWinBehaviors;
+
+        private I_AIDiceSelector _diceSelector;
         private EncounterTestRig _testRig;
         private RuntimeEncounterSetup _encounterSetup;
         private RuntimeCombatant _playerCombatant = null;
         private List<RuntimeCombatant> _enemyCombatants = new List<RuntimeCombatant>();
-
         private Dictionary<string, ICombatantGameObject> _combatantObjects = new Dictionary<string, ICombatantGameObject>();
-
+        private EncounterPresentationLayer _presentationLayer = null;
 
 
         private void Awake()
         {
             _testRig = GetComponent<EncounterTestRig>();
+            _presentationLayer = GetComponent<EncounterPresentationLayer>();
 
             if ( _stateMachineSO != null)
             {
                 _stateMachine = _stateMachineSO.GetRuntimeSimpleStateMachine();
             }
+            if (_aIDiceSelectorSO != null)
+            {
+                _diceSelector = _aIDiceSelectorSO.GetDiceSelector();
+            }
 
             _setupBehaviors      = new SetupStateBehavior();
-            _selectBehaviors     = new SelectStateBehavior();
             _drawupBehaviors     = new DrawupStateBehavior();
+            _selectBehaviors     = new SelectStateBehavior();
             _rollingBehaviors    = new RollingStateBehavior();
             _resolutionBehaviors = new ResolutionStateBehavior();
             _aftermathBehaviors  = new AftermathStateBehavior();
@@ -61,14 +76,20 @@ namespace Encounter
 
         private void OnEnable()
         {
-            _stateMachine.StateEntered += HandleStateEntered;
-            _stateMachine.StateExited  += HandleStateExited;
+            _stateMachine.StateEntered           += HandleStateEntered;
+            _stateMachine.StateExited            += HandleStateExited;
+            _dieSelectedEvent.OnEventTriggered   += HandleDieSelected;
+            _dieUnselectedEvent.OnEventTriggered += HandleDieUnselected;
+            _rollCommandEvent.OnEventTriggered   += HandleRollCommandEvent;
         }
 
         private void OnDisable()
         {
-            _stateMachine.StateEntered -= HandleStateEntered;
-            _stateMachine.StateExited  -= HandleStateExited;
+            _stateMachine.StateEntered           -= HandleStateEntered;
+            _stateMachine.StateExited            -= HandleStateExited;
+            _dieSelectedEvent.OnEventTriggered   -= HandleDieSelected;
+            _dieUnselectedEvent.OnEventTriggered -= HandleDieUnselected;
+            _rollCommandEvent.OnEventTriggered   -= HandleRollCommandEvent;
         }
 
         private void Start()
@@ -143,18 +164,42 @@ namespace Encounter
             }
         }
 
+        private void HandleDieSelected(RuntimeDie d)
+        {
+            if (_stateMachine.CurrentStateName != EncounterStates.SELECT) return;
+            SelectStateBehavior selectBehaviors = _selectBehaviors as SelectStateBehavior;
+            selectBehaviors.HandleDieSelected(d, this);
+
+        }
+        private void HandleDieUnselected(RuntimeDie d)
+        {
+            if (_stateMachine.CurrentStateName != EncounterStates.SELECT) return;
+            SelectStateBehavior selectBehaviors = _selectBehaviors as SelectStateBehavior;
+            selectBehaviors.HandleDieUnselected(d, this);
+        }
+
+        private void HandleRollCommandEvent()
+        {
+            if (_stateMachine.CurrentStateName != EncounterStates.SELECT) return;
+            SelectStateBehavior selectBehaviors = _selectBehaviors as SelectStateBehavior;
+            selectBehaviors.HandleRollCommand(this);
+        }
+
         //================================
         // Properties and methods exposed
         // to the IStateBehaviors
         //================================
+
         public EncounterTestRig TestRig => _testRig;
         public RuntimeSimpleStateMachine StateMachine => _stateMachine;
-
+        public SO_EventIntPayload SelectedDiceUpdatedEvent => _selectedDiceUpdatedEvent;
+        public I_AIDiceSelector DiceSelector => _diceSelector;
         public RuntimeEncounterSetup EncounterSetup { get {  return _encounterSetup; } set { _encounterSetup = value; }  }
 
         public RuntimeCombatant PlayerCombatant { get { return _playerCombatant; } set { _playerCombatant = value; } }
         public List<RuntimeCombatant> EnemyCombatants {  get { return _enemyCombatants; } }
         public Dictionary<string, ICombatantGameObject> CombatantObjects => _combatantObjects;
+        public EncounterPresentationLayer PresentationLayer => _presentationLayer;
         public void InstantiateCombatantObject(string id, GameObject prefab)
         {
             GameObject go = Instantiate(prefab);

@@ -41,6 +41,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 3097215497739437989}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a57a0fee909f1d24998ed4cd41a09b5c, type: 3}
+  m_Script: {fileID: 11500000, guid: 22b1e6df66a71774b9e004e8ae3a714a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Encounter.BlankCombatantObject
