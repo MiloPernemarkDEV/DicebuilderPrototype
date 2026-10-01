@@ -31,7 +31,7 @@ namespace DiceTools
                 0f,
                 10f,
                 spinDuration,
-                EnumTweenEase.QUART,
+                EnumTweenEase.SINE,
                 EnumTweenDirection.OUT
                 );
 

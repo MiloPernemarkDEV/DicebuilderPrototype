@@ -93,7 +93,7 @@ namespace Tweens
         }
         private void OnDestroy()
         {
-            Debug.Log("GOODBYE CRUEL WORLD");
+            Debug.Log("### Tween.OnDestroy: GOODBYE CRUEL WORLD");
         }
     }
 }
