@@ -64,7 +64,8 @@ namespace DiceRolling
 
         private void HandleRollingFinished()
         {
-            foreach(GameObject dieObj in _dieObjects)
+            if (!_areRolling) return;
+            foreach (GameObject dieObj in _dieObjects)
             {
                 IDie2D die2DComponent = dieObj.GetComponent<IDie2D>();
                 if (die2DComponent != null && die2DComponent.GetIsRolling())
