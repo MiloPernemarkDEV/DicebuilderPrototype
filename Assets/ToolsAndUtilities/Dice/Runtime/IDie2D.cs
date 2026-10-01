@@ -31,6 +31,8 @@ namespace Encounter
         public string GetDieID();
 
         public event System.Action RollingFinished;
+
+        public Vector3 GetStartPos();
     }
 
 }
