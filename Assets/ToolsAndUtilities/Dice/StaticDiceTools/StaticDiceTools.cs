@@ -6,7 +6,10 @@ using UnityEngine.Android;
 namespace DiceTools
 {
 
-    
+    public static class DiceConstants
+    {
+        public const float ROLL_DURATION = 0.75f;
+    }
 
     public static class FaceAdjacencies
     {

@@ -7,10 +7,12 @@ namespace EncounterMockup
     public class Ralph : MonoBehaviour
     {
         [SerializeField] SO_SimpleStateMachine _ralphSM_SO;
-        [SerializeField] SO_EventEmptyPayload _rollCommandEvent;
+        //[SerializeField] SO_EventEmptyPayload _rollCommandEvent;
         private RuntimeSimpleStateMachine _ralphSM;
 
         private Animator _ralphAnimator;
+
+        public RuntimeSimpleStateMachine RalphSM { get { return _ralphSM; } }
 
         private void Awake()
         {
@@ -21,12 +23,12 @@ namespace EncounterMockup
         private void OnEnable()
         {
             _ralphSM.StateEntered += HandleStateEntered;
-            _rollCommandEvent.OnEventTriggered += HandleRollCommandEVent;
+            //_rollCommandEvent.OnEventTriggered += HandleRollCommandEVent;
         }
         private void OnDisable()
         {
             _ralphSM.StateEntered -= HandleStateEntered;
-            _rollCommandEvent.OnEventTriggered -= HandleRollCommandEVent;
+            //_rollCommandEvent.OnEventTriggered -= HandleRollCommandEVent;
         }
 
         private void Start()

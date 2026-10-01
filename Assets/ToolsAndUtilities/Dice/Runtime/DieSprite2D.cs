@@ -6,17 +6,20 @@ using System.Collections.Generic;
 
 namespace Encounter
 {
-    public class DieSprite2D : MonoBehaviour, IDie2D
+    public sealed class DieSprite2D : MonoBehaviour, IDie2D
     {
         private Spinner _spinner = new Spinner();
         private RuntimeDie _runtimeDie = null;
         private SpriteRenderer _dieSpriteRenderer = null;
         private bool _isRolling;
+        private bool _beCheating = false;
+        private int _cheatIdx = -1;
 
         private Vector3 _startPos = Vector3.zero;
 
         private void Awake()
         {
+            _startPos = transform.position;
             _dieSpriteRenderer = GetComponent<SpriteRenderer>();
             if (_dieSpriteRenderer == null)
             {
@@ -27,7 +30,6 @@ namespace Encounter
 
         private void OnEnable()
         {
-            _startPos = transform.position;
             _spinner.SpinningStarted  += HandleSpinnerStarted;
             _spinner.SpinningFinished += HandleSpinnerFinished;
             _spinner.SpinnerUpdated   += HandleSpinnerUpdated;
@@ -42,7 +44,7 @@ namespace Encounter
 
         private void Start()
         {
-            SetDieSprite();
+            //SetDieSprite();
         }
 
         private void HandleSpinnerStarted()
@@ -71,9 +73,9 @@ namespace Encounter
 
         private void TweakDieSprite()
         {
-            Transform2DTweaksStruct tweak = MiscTransformTools.GetTransformTweak2D(0.2f, 3.0f);
-            transform.position = tweak.PosTweak + _startPos;
-            transform.rotation = Quaternion.Euler(0f, 0f, tweak.AngleTweak.z);
+            //Transform2DTweaksStruct tweak = MiscTransformTools.GetTransformTweak2D(0.2f, 3.0f);
+            //transform.position = tweak.PosTweak + _startPos;
+            //transform.rotation = Quaternion.Euler(0f, 0f, tweak.AngleTweak.z);
         }
 
         //=======================
@@ -83,19 +85,29 @@ namespace Encounter
 
         public void SetRuntimeDie(RuntimeDie runtimeDie)
         {
+            if (runtimeDie == null)
+            {
+                Debug.LogError("RuntimeDie is null. Cannot set it to DieSprite2D.");
+                return;
+            }
+
             _runtimeDie = runtimeDie;
+            SetDieSprite();
         }
 
         public void Roll()
         {
+            _beCheating = false;
+            _cheatIdx = -1;
             if ( _runtimeDie == null) return;
             if (_isRolling) return;
-
-            _spinner.Spin(gameObject, .75f, 12);
+            _spinner.Spin(gameObject, DiceConstants.ROLL_DURATION, 12);
         }
 
         public void CheatRoll(int resultIdx)
         {
+            _beCheating = true;
+            _cheatIdx = resultIdx;
             // ...
         }
 
@@ -115,6 +127,10 @@ namespace Encounter
         public string GetDieID()
         {
             return _runtimeDie.RuntimeID;
+        }
+        public Vector3 GetStartPos()
+        {
+            return _startPos;
         }
     }
 }

@@ -20,6 +20,30 @@ namespace DiceTools
         public string DisplayName { get { return _displayName; } set { _displayName = value; } }
         public DieBagType CollectionType { get { return _collectionType; } set { _collectionType = value; } }
         public List<RuntimeDie> Dice { get { return _dice; } set { _dice = value; } }
+
+
+        public List<int> GetRandomDieIdxs(int numberOfDiceToDraw)
+        {
+            List<int> randomDieIdxs = new List<int>();
+            if (numberOfDiceToDraw > _dice.Count)
+            {
+                Debug.LogWarning("Requested more dice than available in the bag. Returning all dice.");
+                for (int i = 0; i < _dice.Count; i++)
+                {
+                    randomDieIdxs.Add(i);
+                }
+                return randomDieIdxs;
+            }
+            HashSet<int> selectedIndices = new HashSet<int>();
+            while (selectedIndices.Count < numberOfDiceToDraw)
+            {
+                int randomIndex = Random.Range(0, _dice.Count);
+                selectedIndices.Add(randomIndex);
+            }
+            randomDieIdxs.AddRange(selectedIndices);
+            return randomDieIdxs;
+        }
+
     }
 }
 
